@@ -2,16 +2,18 @@ using System.Collections.Generic;
 
 namespace RestaAPI.Models
 {
-    public abstract class Producto
+    public class Producto
     {
+        public int ProductoId;
 
         private double _precio; 
         public double Precio 
         {
             set
             {
-                if(value> 0)
+                if(value>= 0)
                     _precio = value;
+                
                 
 
             }
