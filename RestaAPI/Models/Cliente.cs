@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace RestaAPI.Models
 {
-    internal class Cliente : IPersona
+    public class Cliente : IPersona
     {
         public string Id { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
         public List<Mesa> mesas { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }

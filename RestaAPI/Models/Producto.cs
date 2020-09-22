@@ -19,8 +19,11 @@ namespace RestaAPI.Models
             }
             get{return _precio;}
         }
+        public string Tipo;
         public string Nombre;
         public  List<Ingrediente> Ingredientes;
+
+       
 
         
     }
