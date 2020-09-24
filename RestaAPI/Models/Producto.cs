@@ -1,9 +1,11 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace RestaAPI.Models
 {
     public class Producto
     {
+        [Key]
         public int ProductoId;
 
         private double _precio; 
