@@ -11,6 +11,7 @@ namespace RestaAPI.Models
     {
         public DbSet<Mozo> Mozos{get;set;}
         public DbSet<Ingrediente> Ingredientes {set;get;}
+        public DbSet<Cliente> clientes {set;get;}
         public RestauranteContext()
         {
 
