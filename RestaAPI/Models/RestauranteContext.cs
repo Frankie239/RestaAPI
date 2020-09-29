@@ -34,7 +34,7 @@ namespace RestaAPI.Models
             if (!optionsBuilder.IsConfigured)
             {
                 
-                optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS; Database=Restaurante; trusted_connection=true;");
+                //optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS; Database=Restaurante; trusted_connection=true;");
             }
         }
 

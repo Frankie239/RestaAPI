@@ -10,7 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-
+using RestaAPI.Models;
+using Microsoft.EntityFrameworkCore;
 namespace RestaAPI
 {
     public class Startup
@@ -29,6 +30,12 @@ namespace RestaAPI
             services.AddOpenApiDocument(configure=>{
                 configure.Title = "RestauranteAPI";
             });
+            services.AddDbContext<Models.RestauranteContext>
+            (
+                o => o.UseSqlServer(
+                    Configuration.GetConnectionString("RestauranteConnectionString")
+                )
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
