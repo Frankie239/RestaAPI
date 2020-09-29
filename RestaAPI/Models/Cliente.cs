@@ -3,12 +3,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RestaAPI.Models
 {
-    public class Cliente : IPersona
+    public class Cliente
     {
         [Key]
         public string Id { get; set; }
-        public List<Mesa> mesas {get;set;}
-        public virtual Pedido pedido {get;set;}
+
+        public string MedioDePagoPreferido {set;get;}
+      
 
         public double Cuenta()
         {

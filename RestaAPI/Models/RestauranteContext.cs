@@ -10,8 +10,14 @@ namespace RestaAPI.Models
     public partial class RestauranteContext : DbContext
     {
         public DbSet<Mozo> Mozos{get;set;}
-        public DbSet<Ingrediente> Ingredientes {set;get;}
+        
         public DbSet<Cliente> clientes {set;get;}
+        public DbSet<Mesa> Mesas {set;get;}
+        public DbSet<Producto> Productos{set;get;}
+        public DbSet<Ingrediente> Ingredientes {set;get;}
+        public DbSet<Pedido> Pedidos {set;get;}
+        public DbSet<ProductoIngrediente> ProductoIngredientes {set;get;}
+        public DbSet<ProductoPedido> ProductoPedidos {set;get;}
         public RestauranteContext()
         {
 
@@ -27,14 +33,42 @@ namespace RestaAPI.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                
                 optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS; Database=Restaurante; trusted_connection=true;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            OnModelCreatingPartial(modelBuilder);
+            //OnModelCreatingPartial(modelBuilder);
+
+
+            modelBuilder.Entity<ProductoIngrediente>().HasKey(pi => new{pi.ingredienteId, pi.productoId});
+
+            modelBuilder.Entity<ProductoIngrediente>()
+            .HasOne<Producto>(pi => pi.Producto)
+            .WithMany(p => p.ProductoIngredientes)
+            .HasForeignKey(pi => pi.productoId);
+
+
+            modelBuilder.Entity<ProductoIngrediente>()
+            .HasOne<Ingrediente>(pi => pi.Ingrediente)
+            .WithMany(i => i.ProductoIngredientes)
+            .HasForeignKey(pi => pi.ingredienteId);
+
+            modelBuilder.Entity<ProductoPedido>().HasKey(pp => new {pp.ProductoId, pp.PedidoId});
+
+
+            modelBuilder.Entity<ProductoPedido>()
+            .HasOne<Producto>(pp => pp.Producto)
+            .WithMany(p => p.ProductoPedidos)
+            .HasForeignKey(pp => pp.ProductoId);
+
+
+            modelBuilder.Entity<ProductoPedido>()
+            .HasOne<Pedido>(pp => pp.Pedido)
+            .WithMany(p => p.ProductoPedidos)
+            .HasForeignKey(pp => pp.PedidoId);
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

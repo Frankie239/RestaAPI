@@ -131,3 +131,15 @@ C:\Users\Fran\source\repos\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\runtimes\un
 C:\Users\Fran\source\repos\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Fran\source\repos\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Fran\source\repos\RestaAPI\RestaAPI\obj\Debug\netcoreapp3.1\RestaAPI.csproj.CopyComplete
+C:\Users\Fran\source\repos\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Fran\source\repos\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\Microsoft.DotNet.InternalAbstractions.dll
+C:\Users\Fran\source\repos\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Fran\source\repos\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.PlatformAbstractions.dll
+C:\Users\Fran\source\repos\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\Namotion.Reflection.dll
+C:\Users\Fran\source\repos\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\NJsonSchema.dll
+C:\Users\Fran\source\repos\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\NSwag.Annotations.dll
+C:\Users\Fran\source\repos\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\NSwag.AspNetCore.dll
+C:\Users\Fran\source\repos\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\NSwag.Core.dll
+C:\Users\Fran\source\repos\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\NSwag.Generation.dll
+C:\Users\Fran\source\repos\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\NSwag.Generation.AspNetCore.dll
+C:\Users\Fran\source\repos\RestaAPI\RestaAPI\obj\Debug\netcoreapp3.1\RestaAPI.MvcApplicationPartsAssemblyInfo.cs

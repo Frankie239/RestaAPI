@@ -6,7 +6,7 @@ namespace RestaAPI.Models
     public class Producto
     {
         [Key]
-        public int ProductoId;
+        public int ProductoId {set;get;}
 
         private double _precio; 
         public double Precio 
@@ -21,9 +21,10 @@ namespace RestaAPI.Models
             }
             get{return _precio;}
         }
-        public string Tipo;
-        public string Nombre;
-        public  List<Ingrediente> Ingredientes;
+        public string Tipo{set;get;}
+        public string Nombre{set;get;}
+        public virtual IEnumerable<ProductoIngrediente> ProductoIngredientes{set;get;}
+        public virtual IEnumerable<ProductoPedido> ProductoPedidos{set;get;}
 
        
 

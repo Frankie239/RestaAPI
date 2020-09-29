@@ -1,13 +1,15 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 namespace RestaAPI.Models
 {
     public class Mesa
     {
         [Key]
-        int mesaId;
+        public int MesaId {set;get;}
 
-        Cliente cliente;
+        public string NumeroDeMesa {set;get;}
+        public List<Pedido> pedidos {set;get;}
 
-        Mozo mozo;
+        
     }
 }

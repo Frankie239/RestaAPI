@@ -10,13 +10,15 @@ namespace RestaAPI.Models
 
         [Key]
         public int PedidoId{set;get;}
-        List<Producto> Productos;
+        public IEnumerable<ProductoPedido> ProductoPedidos {set;get;}
         private int facturacion;
-         public Mozo Vendedor{set;get;} 
-        public Cliente comprador {set;get;}
+        
+        public virtual Cliente comprador {set;get;}
+        public virtual Mesa mesa {set;get;}
         public DateTime Fecha {set;get;}
         
-        public Mesa mesa {set;get;}
+        
+
 
 
     }
