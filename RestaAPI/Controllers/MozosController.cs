@@ -127,8 +127,8 @@ namespace RestaAPI.Controllers
         
          [HttpGet("maxSalario")]
 
-        ///3.-->Devuelve el mozo con el salario mas alto 
-        //get: Api/Mozos/maxSalario
+        ///3 Devuelve el mozo con el salario mas alto 
+        //3. get: Api/Mozos/maxSalario
         public Mozo MejorPago(){
            
           

@@ -1,0 +1,10 @@
+1. GET: api/cliente/masPedidos 
+2. Get: api/mesa/masPopular 
+3. get: Api/Mozos/maxSalario
+4. Get: api/Mozos/MasPedido5. 
+5. GET: api/Pedido/mesa/6
+6. GET: api/producto/ProdMasPedido
+7. GET: api/pedido/6
+8. GET: api/pedido/producto/6
+9. get: api/pedido/facturacion
+10. Get api/pedido/cliente/5

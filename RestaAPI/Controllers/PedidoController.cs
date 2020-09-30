@@ -142,7 +142,7 @@ namespace RestaAPI.Controllers
         }
 
         
-
+        //Devuelve el total de facturacion de un pedido
         //9. get: api/pedido/facturacion
         [HttpGet("Facturacion/{id}")]
         public double calcFacturacion(int id)
@@ -161,11 +161,14 @@ namespace RestaAPI.Controllers
             return total;
             
 
-            /*
-            var facturacion = _context.Productos.FromSqlRaw("select sum(precio) from Productos where ProductoId in (select ProductoId from ProductoPedidos where PedidoId = 7)");
-           
-            return facturacion.SingleOrDefault();
-            */
+        }
+
+        //10. Get api/pedido/cliente/5
+        [HttpGet("cliente/{id}")]
+        public List<Pedido> pedidosPorCliente(int id){
+            var query = _context.Pedidos.FromSqlRaw(string.Format("SELECT * FROM pedidos where clienteId = {0}",id)).ToList();
+
+            return query;
         }
 
         private bool PedidoExists(int id)
