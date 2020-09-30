@@ -14,7 +14,7 @@ namespace RestaAPI.Models
         private int facturacion;
         
         public  Cliente comprador {set;get;}
-        public  Mesa mesa {set;get;}
+        public  int mesa {set;get;}
         public DateTime Fecha {set;get;}
         
         
