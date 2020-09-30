@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestaAPI.Models;
 
 namespace RestaAPI.Migrations
 {
     [DbContext(typeof(RestauranteContext))]
-    partial class RestauranteContextModelSnapshot : ModelSnapshot
+    [Migration("20200930184628_ArregloEstado")]
+    partial class ArregloEstado
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,9 +90,6 @@ namespace RestaAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ClienteId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
@@ -100,13 +99,22 @@ namespace RestaAPI.Migrations
                     b.Property<string>("MozoId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("PedidoId");
+                    b.Property<string>("compradorId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasIndex("ClienteId");
+                    b.Property<bool>("estado")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("mesa")
+                        .HasColumnType("int");
+
+                    b.HasKey("PedidoId");
 
                     b.HasIndex("MesaId");
 
                     b.HasIndex("MozoId");
+
+                    b.HasIndex("compradorId");
 
                     b.ToTable("Pedidos");
                 });
@@ -170,17 +178,17 @@ namespace RestaAPI.Migrations
 
             modelBuilder.Entity("RestaAPI.Models.Pedido", b =>
                 {
-                    b.HasOne("RestaAPI.Models.Cliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteId");
-
-                    b.HasOne("RestaAPI.Models.Mesa", "Mesa")
+                    b.HasOne("RestaAPI.Models.Mesa", null)
                         .WithMany("pedidos")
                         .HasForeignKey("MesaId");
 
                     b.HasOne("RestaAPI.Models.Mozo", null)
                         .WithMany("Pedidos")
                         .HasForeignKey("MozoId");
+
+                    b.HasOne("RestaAPI.Models.Cliente", "comprador")
+                        .WithMany()
+                        .HasForeignKey("compradorId");
                 });
 
             modelBuilder.Entity("RestaAPI.Models.ProductoIngrediente", b =>

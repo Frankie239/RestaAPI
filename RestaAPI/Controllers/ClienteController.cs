@@ -120,9 +120,11 @@ namespace RestaAPI.Controllers
             return _context.clientes.Any(e => e.Id == id);
         }
 
+
+        //1. GET: api/cliente/masPedidos 
         [HttpGet("masPedidos")]
         public Cliente ClienteConMasPedidos(){
-            var query = _context.clientes.FromSqlRaw("select * from clientes where clientes.Id in( select top 1  compradorId From Pedidos group by compradorId order by count(compradorId) DESC)").ToList();
+            var query = _context.clientes.FromSqlRaw("select * from clientes where clientes.Id in(select top 1 Pedidos.ClienteId From Pedidos group by Pedidos.ClienteId order by count(Pedidos.ClienteId) DESC)").ToList();
             if(query != null){
                 foreach(Cliente cli in query){
                     return cli;

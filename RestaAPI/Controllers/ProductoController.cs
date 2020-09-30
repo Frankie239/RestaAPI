@@ -28,25 +28,6 @@ namespace RestaAPI.Controllers
         }
 
 
-        //GET: api/producto/ProdMasPedido
-        [HttpGet("ProdMasPedido")]
-        public Producto ProdMasPedido(){
-             
-            var query  = _context.Productos.FromSqlRaw("select top 1 * from Productos where EXISts  (select top 1 count(PedidoId), ProductoId from ProductoPedidos group by ProductoId )").ToList();
-            if(query != null){
-                foreach(Producto prod in query){
-                return prod;
-                }   
-            }
-            else{
-                return null;
-            }
-            return null;
-            
-            
-        }
-
-
         // GET: api/Producto/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Producto>> GetProducto(int id)
@@ -119,6 +100,34 @@ namespace RestaAPI.Controllers
             await _context.SaveChangesAsync();
 
             return producto;
+        }
+
+        //6. GET: api/producto/ProdMasPedido
+
+
+        [HttpGet("ProdMasPedido")]
+        public Producto ProdMasPedido(){
+             
+            var query  = _context.Productos.FromSqlRaw("select top 1 * from Productos where EXISts  (select top 1 count(PedidoId), ProductoId from ProductoPedidos group by ProductoId )").ToList();
+            if(query != null){
+                foreach(Producto prod in query){
+                return prod;
+                }   
+            }
+            else{
+                return null;
+            }
+            return null;
+            
+            
+        }
+        //Trae los productos por pedido
+        //7.GET: api/pedido/6
+        [HttpGet("pedido/{id}")]
+        public List<Producto> ProdByPedido(int id){
+            var query = _context.Productos.FromSqlRaw(string.Format("select * from Productos where ProductoId in (select ProductoId from ProductoPedidos where PedidoId = {0})",id.ToString())).ToList();
+
+            return query;
         }
 
         private bool ProductoExists(int id)

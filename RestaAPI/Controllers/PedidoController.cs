@@ -84,7 +84,7 @@ namespace RestaAPI.Controllers
 
             return CreatedAtAction("GetPedido", new { id = pedido.PedidoId }, pedido);
         }
-
+        
         // DELETE: api/Pedido/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Pedido>> DeletePedido(int id)
@@ -100,7 +100,29 @@ namespace RestaAPI.Controllers
 
             return pedido;
         }
-        //GET: api/Pedido/mesa/6
+
+        //8. GET: api/pedido/producto/6
+        [HttpDelete("producto/{id}")]
+        public Pedido DeletePedidoConIntermedia(int id)
+        {
+
+            var pedido = _context.Pedidos.Find(id);
+            var pedidoProd = _context.ProductoPedidos.FromSqlRaw(string.Format("SELECT * FROM ProductoPedidos where PedidoId = {0}",id)).ToList();
+
+            if(pedido != null && pedidoProd != null)
+            {
+                
+                _context.ProductoPedidos.RemoveRange(pedidoProd);
+                _context.Pedidos.Remove(pedido);
+                _context.SaveChanges();
+                
+            }
+
+            return pedido;
+
+        }
+
+        //5. GET: api/Pedido/mesa/6
         [HttpGet("Mesa/{id}")]
         public List<Pedido> getByMesa(int id){
             //bool flag =  PedidoExists(id);
@@ -117,6 +139,33 @@ namespace RestaAPI.Controllers
 
             return encontrados;
             
+        }
+
+        
+
+        //9. get: api/pedido/facturacion
+        [HttpGet("Facturacion/{id}")]
+        public double calcFacturacion(int id)
+        {
+         
+
+            
+            double total = 0 ;
+            
+            foreach(ProductoPedido pp in _context.ProductoPedidos.Where(p => p.PedidoId ==id).ToList())
+            {
+                var producto = _context.Productos.Find(pp.ProductoId);
+                total += producto.Precio;
+
+            }
+            return total;
+            
+
+            /*
+            var facturacion = _context.Productos.FromSqlRaw("select sum(precio) from Productos where ProductoId in (select ProductoId from ProductoPedidos where PedidoId = 7)");
+           
+            return facturacion.SingleOrDefault();
+            */
         }
 
         private bool PedidoExists(int id)

@@ -103,6 +103,7 @@ namespace RestaAPI.Controllers
             return mesa;
         }
 
+        //2. Get: api/mesa/masPopular 
         [HttpGet("MasPopular")]
         public Mesa MesaMasPopular(){
             var query = _context.Mesas.FromSqlRaw("select * from Mesas where MesaId  in(select top 1 MesaId From Pedidos group by MesaId order by count(MozoId) DESC)").ToList();
