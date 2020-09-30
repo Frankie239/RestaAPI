@@ -100,6 +100,23 @@ namespace RestaAPI.Controllers
 
             return pedido;
         }
+        //GET: api/Pedido/mesa/6
+        [HttpGet("Mesa/{id}")]
+        public List<Pedido> getByMesa(int id){
+            bool flag =  PedidoExists(id);
+            List<Pedido> encontrados = new List<Pedido>(); 
+            if(flag){
+                var query = _context.Pedidos.FromSqlRaw(String.Format("select *from Pedidos where MesaId = {0}",id.ToString())).ToList();
+
+                encontrados = query;
+            }
+            else
+                return null;
+            
+
+            return encontrados;
+            
+        }
 
         private bool PedidoExists(int id)
         {

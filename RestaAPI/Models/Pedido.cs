@@ -13,8 +13,8 @@ namespace RestaAPI.Models
         public IEnumerable<ProductoPedido> ProductoPedidos {set;get;}
         private int facturacion;
         
-        public virtual Cliente comprador {set;get;}
-        public virtual Mesa mesa {set;get;}
+        public  Cliente comprador {set;get;}
+        public  Mesa mesa {set;get;}
         public DateTime Fecha {set;get;}
         
         

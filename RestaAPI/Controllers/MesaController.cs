@@ -41,6 +41,8 @@ namespace RestaAPI.Controllers
             return mesa;
         }
 
+
+
         // PUT: api/Mesa/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -99,6 +101,16 @@ namespace RestaAPI.Controllers
             await _context.SaveChangesAsync();
 
             return mesa;
+        }
+
+        [HttpGet("MasPopular")]
+        public Mesa MesaMasPopular(){
+            var query = _context.Mesas.FromSqlRaw("select * from Mesas where MesaId  in(select top 1 MesaId From Pedidos group by MesaId order by count(MozoId) DESC)").ToList();
+            foreach(Mesa mesa in query){
+                return mesa;
+            }
+            return null;
+            
         }
 
         private bool MesaExists(int id)

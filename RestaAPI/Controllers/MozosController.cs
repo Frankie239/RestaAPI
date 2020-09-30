@@ -20,6 +20,32 @@ namespace RestaAPI.Controllers
             _context = context;
         }
 
+        //Get: api/Mozos/conMasPedido
+        [HttpGet("maxSalario")]
+        ///Devuelve el mozo con el salario mas alto 
+        public Mozo MejorPago(){
+           
+          
+           var mozo = _context.Mozos.FromSqlRaw("select * from Mozos where Salario in(select max(salario) from Mozos)").ToList();
+           
+           foreach(Mozo encontra3 in mozo){
+               return encontra3;
+           }
+           
+           return null;
+           
+
+        }
+        //GET: api/masPedidos
+        [HttpGet("masPedidos")]
+        public Mozo MasPedidos(){
+            var mozos = _context.Mozos.FromSqlRaw(" select * from Mozos where Mozos.Id  in(select top 1 MozoId From Pedidos group by MozoId order by count(MozoId) DESC)").ToList();
+            foreach(Mozo mozo in mozos ){
+                return mozo;
+            }
+            return null;
+        }
+
         // GET: api/Mozos
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Mozo>>> GetMozos()

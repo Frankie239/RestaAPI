@@ -27,6 +27,26 @@ namespace RestaAPI.Controllers
             return await _context.Productos.ToListAsync();
         }
 
+
+        //GET: api/producto/ProdMasPedido
+        [HttpGet("ProdMasPedido")]
+        public Producto ProdMasPedido(){
+             
+            var query  = _context.Productos.FromSqlRaw("select top 1 * from Productos where EXISts  (select top 1 count(PedidoId), ProductoId from ProductoPedidos group by ProductoId )").ToList();
+            if(query != null){
+                foreach(Producto prod in query){
+                return prod;
+                }   
+            }
+            else{
+                return null;
+            }
+            return null;
+            
+            
+        }
+
+
         // GET: api/Producto/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Producto>> GetProducto(int id)
