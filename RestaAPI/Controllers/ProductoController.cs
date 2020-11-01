@@ -24,7 +24,10 @@ namespace RestaAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Producto>>> GetProductos()
         {
-            return await _context.Productos.ToListAsync();
+            return await _context.Productos
+            .Include(p => p.ProductoPedidos)
+            .Include(p => p.ProductoIngredientes)
+            .ToListAsync();
         }
 
 
@@ -32,7 +35,10 @@ namespace RestaAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Producto>> GetProducto(int id)
         {
-            var producto = await _context.Productos.FindAsync(id);
+            var producto = await _context.Productos
+            .Include(p => p.ProductoPedidos)
+            .Include(p => p.ProductoIngredientes)
+            .FirstOrDefaultAsync(p => p.ProductoId == id);
 
             if (producto == null)
             {
@@ -108,7 +114,12 @@ namespace RestaAPI.Controllers
         [HttpGet("ProdMasPedido")]
         public Producto ProdMasPedido(){
              
-            var query  = _context.Productos.FromSqlRaw("select top 1 * from Productos where EXISts  (select top 1 count(PedidoId), ProductoId from ProductoPedidos group by ProductoId )").ToList();
+            var query  = _context.Productos
+            .FromSqlRaw("select top 1 * from Productos where EXISts  (select top 1 count(PedidoId), ProductoId from ProductoPedidos group by ProductoId )")
+            .Include(p => p.ProductoPedidos)
+            .Include(p => p.ProductoIngredientes)
+            .ToList();
+
             if(query != null){
                 foreach(Producto prod in query){
                 return prod;
@@ -125,8 +136,12 @@ namespace RestaAPI.Controllers
         //7.GET: api/pedido/6
         [HttpGet("pedido/{id}")]
         public List<Producto> ProdByPedido(int id){
-            var query = _context.Productos.FromSqlRaw(string.Format("select * from Productos where ProductoId in (select ProductoId from ProductoPedidos where PedidoId = {0})",id.ToString())).ToList();
-
+            var query = _context.Productos
+            .FromSqlRaw(string.Format("select productoId, precio, Tipo, Nombre from Productos where ProductoId in (select ProductoId from ProductoPedidos where PedidoId ={0})",id.ToString()))
+            .Include(p => p.ProductoPedidos)
+            .Include(p => p.ProductoIngredientes)
+            .ToList();
+            
             return query;
         }
 
