@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+
 namespace RestaAPI.Models
 {
     public class Mesa
@@ -8,6 +10,8 @@ namespace RestaAPI.Models
         public int MesaId {set;get;}
 
         public string NumeroDeMesa {set;get;}
+        
+        [JsonIgnore]
         public List<Pedido> pedidos {set;get;}
 
         

@@ -23,15 +23,18 @@ namespace RestaAPI.Controllers
         // GET: api/Pedido
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Pedido>>> GetPedidos()
-        {
-            return await _context.Pedidos.ToListAsync();
+        {   
+            return await _context.Pedidos.Include(p => p.Cliente).Include(p => p.Mesa).ToListAsync();
+            //return await _context.Pedidos.ToListAsync();
         }
 
         // GET: api/Pedido/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Pedido>> GetPedido(int id)
         {
-            var pedido = await _context.Pedidos.FindAsync(id);
+            var pedido = await _context.Pedidos.Include(p => p.Cliente)
+                .Include(p => p.Mesa)
+                .FirstOrDefaultAsync(i => i.PedidoId == id);
 
             if (pedido == null)
             {

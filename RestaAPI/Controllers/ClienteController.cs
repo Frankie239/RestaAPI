@@ -24,6 +24,7 @@ namespace RestaAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Cliente>>> Getclientes()
         {
+            
             return await _context.clientes.ToListAsync();
         }
             

@@ -30,6 +30,8 @@ namespace RestaAPI
             services.AddOpenApiDocument(configure=>{
                 configure.Title = "RestauranteAPI";
             });
+
+            
             services.AddDbContext<Models.RestauranteContext>
             (
                 o => o.UseSqlServer(
