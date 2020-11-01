@@ -27,14 +27,16 @@ namespace RestaAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Mozo>>> GetMozos()
         {
-            return await _context.Mozos.ToListAsync();
+            return await _context.Mozos.Include(m => m.Pedidos).ToListAsync();
         }
 
         // GET: api/Mozos/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Mozo>> GetMozo(string id)
         {
-            var mozo = await _context.Mozos.FindAsync(id);
+            var mozo = await _context.Mozos
+            .Include(m => m.Pedidos)
+            .FirstOrDefaultAsync(p => p.Id == id);
 
             if (mozo == null)
             {
@@ -132,7 +134,7 @@ namespace RestaAPI.Controllers
         public Mozo MejorPago(){
            
           
-           var mozo = _context.Mozos.FromSqlRaw("select * from Mozos where Salario in(select max(salario) from Mozos)").ToList();
+           var mozo = _context.Mozos.FromSqlRaw("select * from Mozos where Salario in(select max(salario) from Mozos)").Include(m => m.Pedidos).ToList();
            
            foreach(Mozo encontra3 in mozo){
                return encontra3;
@@ -146,7 +148,7 @@ namespace RestaAPI.Controllers
          //4. Get: api/Mozos/MasPedido
         [HttpGet("masPedidos")]
         public Mozo MasPedidos(){
-            var mozos = _context.Mozos.FromSqlRaw(" select * from Mozos where Mozos.Id  in(select top 1 MozoId From Pedidos group by MozoId order by count(MozoId) DESC)").ToList();
+            var mozos = _context.Mozos.FromSqlRaw(" select * from Mozos where Mozos.Id  in(select top 1 MozoId From Pedidos group by MozoId order by count(MozoId) DESC)").Include(m => m.Pedidos).ToList();
             foreach(Mozo mozo in mozos ){
                 return mozo;
             }

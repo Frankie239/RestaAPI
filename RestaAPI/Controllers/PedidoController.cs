@@ -110,7 +110,9 @@ namespace RestaAPI.Controllers
         {
 
             var pedido = _context.Pedidos.Find(id);
-            var pedidoProd = _context.ProductoPedidos.FromSqlRaw(string.Format("SELECT * FROM ProductoPedidos where PedidoId = {0}",id)).ToList();
+            //var pedidoProd = _context.ProductoPedidos.FromSqlRaw(string.Format("SELECT * FROM ProductoPedidos where PedidoId = {0}",id)).ToList();
+            var pedidoProd = _context.ProductoPedidos
+            .Find(id);
 
             if(pedido != null && pedidoProd != null)
             {
@@ -132,7 +134,8 @@ namespace RestaAPI.Controllers
             List<Pedido> encontrados = new List<Pedido>(); 
        
        
-            var query = _context.Pedidos.FromSqlRaw(string.Format("select *from Pedidos where MesaId  ={0}",id.ToString()));
+            var query = _context.Pedidos.FromSqlRaw(string.Format("select *from Pedidos where MesaId  ={0}",id.ToString())).Include(p => p.Mesa).Include(p => p.Cliente);
+            //var query = _context.Pedidos.FirstOrDefaultAsync(p => p.Mesa.MesaId == id);
             encontrados = query.ToList();
             
             
