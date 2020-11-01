@@ -1,4 +1,14 @@
+la idea seria gestionar el restaurante tanto en stock de los productos como en los pedidos, calculando los precios y demas
+pudiendo tener la informacion de las mesas y controlando los pedidos.
+
+
+
+Seria ideal que, tenga dos lados, un lado de cliente y un lado de "Dueño" del restaurante. del lado del cliente se pueden
+ver todos los productos y realizar un pedido
+pero del lado del dueño se pueden ver los productos, la informacion importante de 
+
 1. GET: api/cliente/masPedidos 
+	Devuelve el cliente mas pedido
 2. Get: api/mesa/masPopular 
 3. get: Api/Mozos/maxSalario
 4. Get: api/Mozos/MasPedido5. 
@@ -8,3 +18,12 @@
 8. GET: api/pedido/producto/6
 9. get: api/pedido/facturacion
 10. Get api/pedido/cliente/5
+
+
+Agregaria:
+mejor manejo con las querys, tienen mala sintaxis y la mayoria estan hechos con el rawsql y no me gusta ademas que esta ligado a
+que te devuelva el objeto mismo
+
+Utilizar metodos asincronicos para poder mejorar el rendimiento de la aplicacion.
+
+poder utilizar bien la interfaz de Ipersona ya que no la aplique.
