@@ -143,3 +143,11 @@ C:\Users\Fran\source\repos\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\NSwag.Core.
 C:\Users\Fran\source\repos\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\NSwag.Generation.dll
 C:\Users\Fran\source\repos\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\NSwag.Generation.AspNetCore.dll
 C:\Users\Fran\source\repos\RestaAPI\RestaAPI\obj\Debug\netcoreapp3.1\RestaAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Fran\source\repos\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\Restaurante\angular.json
+C:\Users\Fran\source\repos\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\Restaurante\e2e\tsconfig.json
+C:\Users\Fran\source\repos\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\Restaurante\package-lock.json
+C:\Users\Fran\source\repos\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\Restaurante\package.json
+C:\Users\Fran\source\repos\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\Restaurante\tsconfig.app.json
+C:\Users\Fran\source\repos\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\Restaurante\tsconfig.json
+C:\Users\Fran\source\repos\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\Restaurante\tsconfig.spec.json
+C:\Users\Fran\source\repos\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\Restaurante\tslint.json

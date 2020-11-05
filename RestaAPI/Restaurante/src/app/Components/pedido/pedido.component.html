@@ -1,0 +1,28 @@
+<h1 id="mainHeader">Pedidos</h1>
+<h3 id="MesnajeNoPedidos" *ngIf=" listadoPedidos.length == 0">¡No hay pedidos pendientes!</h3>
+<div id="tablePedidos"
+*ngIf="! (listadoPedidos.length == 0)">
+    <table class=" table table-stripped" >
+        <thead>
+            <tr>
+                <th scope="col">Mesa</th>
+                <th scope="col">Pedido</th>
+                <th scope="col">Total</th>
+                <th scope="col">Cobrar</th>
+                <th scope="col">Modificar/Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pedido of listadoPedidos">
+                <th scope="row">{{pedido.Mesa}}</th>
+                <td>{{pedido.PedidoId}}</td>
+                <td>$200</td>
+                <td><button type="button" class="btn btn-info">Cobrar</button></td>
+                <td><button type="button" class="btn btn-danger">Modificar/Eliminar</button></td>
+            </tr>
+        </tbody>
+                
+        
+    </table>
+</div>
+
