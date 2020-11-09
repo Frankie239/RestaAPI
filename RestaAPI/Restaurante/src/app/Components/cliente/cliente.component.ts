@@ -9,29 +9,32 @@ import {Icliente} from 'src/app/Models/icliente';
 })
 export class ClienteComponent implements OnInit {
 
-  public listClientes : Icliente[];
+  listClientes :Icliente[];
 
   constructor( private Servicio: ClienteService) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
 
-    this.mostratTodos();
+    this.MostrarListado();
+    console.table(this.listClientes);
 
   }
 
-  mostratTodos()
+  MostrarListado()
   {
     this.Servicio.mostrarTodos()
     .subscribe
     (
       resultado =>
       {
-        this.listClientes = resultado
-        console.table(resultado)
+        this.listClientes = resultado;
+        let x = this.listClientes.length;
+        console.table(resultado);
+        return this.listClientes;
 
       },
       error => console.error(error)
-    )
+    );
   }
 
 }

@@ -20,7 +20,7 @@ export class PedidoComponent implements OnInit {
   constructor(){}
 
   ngOnInit(): void {
-    console.log("Anda");
+    console.log(this.pedido);
     this.cargarDatosHard();
     
   }

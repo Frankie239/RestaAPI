@@ -1,7 +1,15 @@
 <p>cliente works!</p>
 
-<div *ngFor="let cliente of listClientes">
-    <h3>{{cliente.Id}}</h3>
-    <h3>{{cliente.MedioDePago}}</h3>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Medio de pago</th>
+    </tr>
 
-</div>
+    <tr *ngFor="let cliente of listClientes">
+        <td>{{cliente.Id}}</td>
+        <td>{{cliente.MedioDePago}}</td>
+    </tr>
+</table>
+
+{{data|async}}

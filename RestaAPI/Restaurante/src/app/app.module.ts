@@ -27,7 +27,15 @@ import { PedidoComponent } from './Components/pedido/pedido.component';
 
     ])
   ],
-  providers: [],
+  providers: [
+    {provide: 'BASE_URL', useFactory: getBaseUrl}
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function getBaseUrl(){
+  
+  return document.getElementsByTagName('base')[0].href;
+}

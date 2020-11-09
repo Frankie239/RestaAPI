@@ -1,6 +1,7 @@
 export interface Icliente {
-    Id:number,
-    MedioDePago:any
+    
+    Id:any;
+    MedioDePago:any;
 
 
 }

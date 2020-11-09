@@ -9,12 +9,12 @@ import { inject } from '@angular/core/testing';
 })
 export class ClienteService {
   public listaClientes : Icliente[];
-  public baseUrl:string = "http://localhost:5000/";
+  
   private apiUrl:string = this.baseUrl+ "api/cliente";
 
 
 
-  constructor( private http:HttpClient) { }
+  constructor(@Inject('BASE_URL') private baseUrl:string ,private http:HttpClient) { }
 
   mostrarTodos(): Observable<Icliente[]>
   {

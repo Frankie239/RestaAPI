@@ -12,11 +12,12 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using RestaAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 namespace RestaAPI
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+                public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -38,6 +39,11 @@ namespace RestaAPI
                     Configuration.GetConnectionString("RestauranteConnectionString")
                 )
             );
+
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "Restaurante/dist";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,6 +65,16 @@ namespace RestaAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+            
+           
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "Restaurante";
+                if (env.IsDevelopment())
+                {
+                    spa.UseAngularCliServer(npmScript: "start");
+                }
             });
         }
     }
