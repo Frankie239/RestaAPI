@@ -1,11 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClienteComponent } from './Components/cliente/cliente.component';
 import { RouterModule } from '@angular/router';
 import { PedidoComponent } from './Components/pedido/pedido.component';
+import { ProductoComponent } from './components/producto/producto.component';
+import { ProductoEditorComponent } from './Components/producto-editor/producto-editor.component';
 
 
 
@@ -15,6 +17,8 @@ import { PedidoComponent } from './Components/pedido/pedido.component';
     AppComponent,
     ClienteComponent,
     PedidoComponent,
+    ProductoComponent,
+    ProductoEditorComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -23,7 +27,10 @@ import { PedidoComponent } from './Components/pedido/pedido.component';
     AppRoutingModule,
     RouterModule.forRoot([
       {path:'clientes-listado', component: ClienteComponent},
-      {path:'pedidos',component: PedidoComponent}
+      {path:'pedidos',component: PedidoComponent},
+      {path:'productos',component:ProductoComponent},
+      {path:'productos/editor/:id', component:ProductoEditorComponent},
+      {path: 'productos/editor', component:ProductoEditorComponent},
 
     ])
   ],

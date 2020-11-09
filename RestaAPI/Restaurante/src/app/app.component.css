@@ -1,0 +1,14 @@
+:root
+{
+    --pallete1: #b29579;
+    --pallete2: #593b23;
+    --pallete3: #4057ae;
+    --pallete4: #f8ffff;
+    --pallete5: #305b4c;
+}
+
+
+#nav
+{
+    background-color: var(--pallete4);
+}

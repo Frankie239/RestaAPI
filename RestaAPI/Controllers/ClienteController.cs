@@ -22,10 +22,10 @@ namespace RestaAPI.Controllers
 
         // GET: api/Cliente
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Cliente>>> Getclientes()
+        public List<Cliente> Getclientes()
         {
             
-            return await _context.clientes.ToListAsync();
+            return _context.clientes.ToList();
         }
             
         // GET: api/Cliente/5

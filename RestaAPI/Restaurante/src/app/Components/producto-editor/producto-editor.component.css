@@ -1,0 +1,33 @@
+:root
+{
+    --pallete1: #b29579;
+    --pallete2: #593b23;
+    --pallete3: #4057ae;
+    --pallete4: #f8ffff;
+    --pallete5: #305b4c;
+}
+.form-group
+{
+
+    width: 70%;
+    align-self: flex-end;
+}
+form
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+
+    
+}
+#botones
+{
+    align-self: flex-end;
+    justify-content: space-around;
+}
+
+a:link
+{
+    text-decoration: none;
+}

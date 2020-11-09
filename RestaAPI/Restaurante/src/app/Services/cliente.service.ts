@@ -24,7 +24,7 @@ export class ClienteService {
       "Accept":'application/json'
     }
 
-    return this.http.get<Icliente[]>(this.apiUrl);
+    return this.http.get<Icliente[]>(this.apiUrl,{headers});
   }
 
 }

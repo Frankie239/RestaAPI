@@ -8,15 +8,18 @@ import {Icliente} from 'src/app/Models/icliente';
   styleUrls: ['./cliente.component.css']
 })
 export class ClienteComponent implements OnInit {
+  constructor( private Servicio: ClienteService) { }
 
   listClientes :Icliente[];
 
-  constructor( private Servicio: ClienteService) { }
+  
 
   ngOnInit(){
 
     this.MostrarListado();
-    console.table(this.listClientes);
+
+    console.table(this.listClientes)
+    
 
   }
 
@@ -25,16 +28,17 @@ export class ClienteComponent implements OnInit {
     this.Servicio.mostrarTodos()
     .subscribe
     (
-      resultado =>
+      res =>
       {
-        this.listClientes = resultado;
-        let x = this.listClientes.length;
-        console.table(resultado);
-        return this.listClientes;
-
+        this.listClientes = res;
+        console.table(this.listClientes);
       },
       error => console.error(error)
     );
   }
+        
+        
+        
+
 
 }

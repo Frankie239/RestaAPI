@@ -1,0 +1,46 @@
+
+<div id="mainBody">
+   
+  <button (click)="CargarEditorNuevo()" class="btn btn-primary">
+    
+    Agregar producto
+  </button>
+
+    <div id="cardWrapper">
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">nombre</th>
+                <th scope="col">tipo</th>
+                <th scope="col">precio</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <tr>
+                <th scope="row">1</th>
+                <td><a (click)="CargarEditor(1)">Hamburguesa con queso</a></td>
+                <td>Carnes</td>
+                <td>$300</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td><a (click)="CargarEditor(2)">fideos con salsa</a></td>
+                <td>Pastas</td>
+                <td>$170</td>
+              </tr>
+            </tbody>
+          </table>
+         
+
+        
+
+
+    </div>
+    
+      
+
+</div>
+
+

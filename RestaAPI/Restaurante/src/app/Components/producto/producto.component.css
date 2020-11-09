@@ -1,0 +1,35 @@
+:root
+{
+    --pallete1: #b29579;
+    --pallete2: #593b23;
+    --pallete3: #4057ae;
+    --pallete4: #f8ffff;
+    --pallete5: #305b4c;
+}
+
+
+
+#mainBody
+{
+    margin-top: 3%;
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+    grid-template-rows: auto;
+    
+    background-color:var(--pallete4);
+}
+
+#cardWrapper
+{
+    grid-column: 2/3;
+    grid-row: auto;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 3px;
+}
+
+.btn{
+    width: 69.3%;
+    height: 36%;
+}
