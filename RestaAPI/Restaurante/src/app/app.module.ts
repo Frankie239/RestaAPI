@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { PedidoComponent } from './Components/pedido/pedido.component';
 import { ProductoComponent } from './components/producto/producto.component';
 import { ProductoEditorComponent } from './Components/producto-editor/producto-editor.component';
+import { MesaComponent } from './Components/mesa/mesa.component';
 
 
 
@@ -19,6 +20,7 @@ import { ProductoEditorComponent } from './Components/producto-editor/producto-e
     PedidoComponent,
     ProductoComponent,
     ProductoEditorComponent,
+    MesaComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -31,6 +33,8 @@ import { ProductoEditorComponent } from './Components/producto-editor/producto-e
       {path:'productos',component:ProductoComponent},
       {path:'productos/editor/:id', component:ProductoEditorComponent},
       {path: 'productos/editor', component:ProductoEditorComponent},
+      {path: 'mesas',component:MesaComponent},
+      
 
     ])
   ],
