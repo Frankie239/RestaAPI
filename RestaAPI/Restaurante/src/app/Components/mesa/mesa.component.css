@@ -1,0 +1,44 @@
+
+.ocupada{
+    background-color: rgb(244,115,121);
+}
+.libre
+{
+    background-color: rgb(192,192,192);
+}
+.reservada
+{
+    background-color: aliceblue;
+}
+
+
+
+#wrapper
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 70%;
+    flex-wrap: wrap;
+
+}
+.mesa
+{
+    width: 9%;
+    height: 30%;
+    text-align: center;
+    border-radius: 10%;
+}
+a:link
+{
+    text-decoration: none;
+    
+}
+a
+{color: #535252;}
+a:hover
+{
+    text-decoration: none;
+    color: black;
+    border: 0.5px solid #535252;
+}

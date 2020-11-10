@@ -9,6 +9,7 @@ import { PedidoComponent } from './Components/pedido/pedido.component';
 import { ProductoComponent } from './components/producto/producto.component';
 import { ProductoEditorComponent } from './Components/producto-editor/producto-editor.component';
 import { MesaComponent } from './Components/mesa/mesa.component';
+import { MesasVisualizadorComponent } from './Components/mesas-visualizador/mesas-visualizador.component';
 
 
 
@@ -21,6 +22,7 @@ import { MesaComponent } from './Components/mesa/mesa.component';
     ProductoComponent,
     ProductoEditorComponent,
     MesaComponent,
+    MesasVisualizadorComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
