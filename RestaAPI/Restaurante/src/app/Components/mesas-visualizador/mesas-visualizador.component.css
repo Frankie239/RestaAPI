@@ -1,0 +1,37 @@
+#wrapper
+{
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    grid-template-rows: 20% auto auto;
+    margin-top: 2%;
+    
+}
+
+.table
+{
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+
+.btn
+{
+    grid-column: 1;
+    grid-row: 3;
+}
+#cerrar
+{
+    grid-column: 2;
+    grid-row: 3/4;
+    background-color: #5E89CF;
+}
+#agregar
+{
+    grid-column: 2;
+    grid-row: 1/2;
+    background-color: #3C9F57;
+}
+
+h1
+{
+    grid-row: 1/2;
+}

@@ -36,6 +36,7 @@ import { MesasVisualizadorComponent } from './Components/mesas-visualizador/mesa
       {path:'productos/editor/:id', component:ProductoEditorComponent},
       {path: 'productos/editor', component:ProductoEditorComponent},
       {path: 'mesas',component:MesaComponent},
+      {path:'mesas/:id', component:MesasVisualizadorComponent},
       
 
     ])
