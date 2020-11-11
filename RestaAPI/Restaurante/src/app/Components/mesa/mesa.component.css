@@ -17,17 +17,27 @@
 {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    
     width: 70%;
+    height:auto;
     flex-wrap: wrap;
+    margin-left: 14%;
+    margin-right: 10%;
 
+}
+a h1
+{
+    padding:0;
 }
 .mesa
 {
-    width: 9%;
-    height: 30%;
+    width: 100px;
+    height: 50px;
     text-align: center;
     border-radius: 10%;
+    margin-right: 5%;
+    margin-left: 5%;
+    margin-top: 3%;
 }
 a:link
 {
@@ -40,5 +50,6 @@ a:hover
 {
     text-decoration: none;
     color: black;
-    border: 0.5px solid #535252;
+    border: 1px solid #535252;
+    padding: 0;
 }
