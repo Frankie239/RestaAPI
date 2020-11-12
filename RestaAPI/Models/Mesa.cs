@@ -10,6 +10,8 @@ namespace RestaAPI.Models
         public int MesaId {set;get;}
 
         public string NumeroDeMesa {set;get;}
+
+        public string Estado {set;get;}
         
         [JsonIgnore]
         public List<Pedido> pedidos {set;get;}

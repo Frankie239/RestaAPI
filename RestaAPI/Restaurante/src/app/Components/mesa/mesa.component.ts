@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import { Imesa } from 'src/app/Models/imesa';
+import {MesasService} from 'src/app/Services/mesas.service';
+
 
 @Component({
   selector: 'app-mesa',
@@ -8,9 +11,13 @@ import {Router} from '@angular/router';
 })
 export class MesaComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  public listaMesas:Imesa[];
+
+  constructor(private router:Router, private Servicio: MesasService) { }
 
   ngOnInit(): void {
+    this.CargarMesas();
+
   }
 
 
@@ -19,5 +26,19 @@ export class MesaComponent implements OnInit {
   {
     this.router.navigateByUrl("/mesas/"+id);
   }
+
+  CargarMesas(){
+    this.Servicio.mostrarMesas()
+    .subscribe
+    (
+      res => {this.listaMesas = res
+              console.table(this.listaMesas)},
+      
+      error => console.log("Error: "+error)
+
+    )
+  }
+
+
 
 }
