@@ -10,6 +10,7 @@ import { ProductoComponent } from './components/producto/producto.component';
 import { ProductoEditorComponent } from './Components/producto-editor/producto-editor.component';
 import { MesaComponent } from './Components/mesa/mesa.component';
 import { MesasVisualizadorComponent } from './Components/mesas-visualizador/mesas-visualizador.component';
+import { ProbandoComponent } from './Components/probando/probando.component';
 
 
 
@@ -23,6 +24,7 @@ import { MesasVisualizadorComponent } from './Components/mesas-visualizador/mesa
     ProductoEditorComponent,
     MesaComponent,
     MesasVisualizadorComponent,
+    ProbandoComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -37,6 +39,7 @@ import { MesasVisualizadorComponent } from './Components/mesas-visualizador/mesa
       {path: 'productos/editor', component:ProductoEditorComponent},
       {path: 'mesas',component:MesaComponent},
       {path:'mesas/:id', component:MesasVisualizadorComponent},
+      {path:'testing', component:ProbandoComponent},
       
 
     ])
