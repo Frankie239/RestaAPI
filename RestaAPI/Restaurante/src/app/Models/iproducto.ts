@@ -3,5 +3,5 @@ export interface Iproducto {
     Precio:number;
     Tipo:string;
     Nombre:string;
-
 }
+

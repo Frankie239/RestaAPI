@@ -21,10 +21,12 @@ export class PedidoComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.pedido);
-    this.cargarDatosHard();
+    
     
   }
 
+
+  /*
   cargarDatosHard()
   {
     for (let i = 0; i < 11; i++) {
@@ -35,6 +37,7 @@ export class PedidoComponent implements OnInit {
     }
     
   }
+  */
     
    
    

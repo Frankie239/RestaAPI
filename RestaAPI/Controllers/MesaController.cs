@@ -24,7 +24,7 @@ namespace RestaAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Mesa>>> GetMesas()
         {
-            return await _context.Mesas.ToListAsync();
+            return await _context.Mesas.Include(m => m.pedidos).ToListAsync();
         }
 
         // GET: api/Mesa/5
@@ -32,7 +32,7 @@ namespace RestaAPI.Controllers
         public async Task<ActionResult<Mesa>> GetMesa(int id)
         {
             var mesa = await _context.Mesas.FindAsync(id);
-
+            
             if (mesa == null)
             {
                 return NotFound();

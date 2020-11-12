@@ -13,7 +13,8 @@ namespace RestaAPI.Models
 
         public string Estado {set;get;}
         
-        [JsonIgnore]
+        
+     
         public List<Pedido> pedidos {set;get;}
 
         
