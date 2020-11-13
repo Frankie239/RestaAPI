@@ -17,6 +17,7 @@ export class MesaComponent implements OnInit {
 
   ngOnInit(): void {
     this.CargarMesas();
+    //console.log(this.listaMesas[3].pedidos[0]);
 
   }
 
@@ -31,8 +32,12 @@ export class MesaComponent implements OnInit {
     this.Servicio.mostrarMesas()
     .subscribe
     (
-      res => {this.listaMesas = res
-              console.table(this.listaMesas)},
+      res => 
+      { 
+        this.listaMesas = res;
+        console.table(this.listaMesas);
+        console.log(this.listaMesas[3].pedidos[0].pedidoId);
+      },
       
       error => console.log("Error: "+error)
 

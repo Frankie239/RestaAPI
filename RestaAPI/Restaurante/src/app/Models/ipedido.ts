@@ -3,7 +3,7 @@ import { Icliente } from "./icliente";
 
 export interface IPedido {
 
-    PedidoId:number;
+    pedidoId:number;
     
     Hora:any;
 
