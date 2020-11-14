@@ -29,9 +29,9 @@ namespace RestaAPI.Controllers
 
         // GET: api/Mesa/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Mesa>> GetMesa(int id)
+        public  ActionResult<Mesa> GetMesa(int id)
         {
-            var mesa = await _context.Mesas.FindAsync(id);
+            var mesa =  _context.Mesas.Include(m => m.pedidos).Where(m => m.MesaId == id).First();
             
 
             if (mesa == null)

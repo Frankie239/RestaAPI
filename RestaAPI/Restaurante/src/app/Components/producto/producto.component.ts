@@ -28,10 +28,10 @@ export class ProductoComponent implements OnInit {
   datosHard()
   {
     
-    this.prod.Nombre ="Productito";
-    this.prod.Precio=200;
-    this.prod.ProductoId =1;
-    this.prod.Tipo="productos general";
+    this.prod.nombre ="Productito";
+    this.prod.precio=200;
+    this.prod.productoId =1;
+    this.prod.tipo="productos general";
     console.table(this.prod);
   }
 

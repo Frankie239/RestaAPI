@@ -18,11 +18,36 @@ export class MesasVisualizadorComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router, private ServicioMesa: MesasService, private ServicioProducto: ProductoService) { }
   //Lista de prod para mostrarlos en la tabla
-  listadoProductos: Iproducto[]
+  listadoProductos: Iproducto[];
   mesa: Imesa;
+  pedidoId:number;
 
   ngOnInit(): void {
     let Id = this.route.snapshot.params.id;
+    //Busca la mesa que le llega por la url
+    this.ServicioMesa.MostrarUnaMesa(Id)
+    .subscribe
+    (
+      res => {
+        
+        this.mesa = res;
+        this.pedidoId = this.mesa.pedidos[0].pedidoId;
+        this.ServicioProducto.productosPedidosPorId(this.pedidoId)
+        .subscribe
+        (
+          /*Los asigno a la variable de listadoProductos*/
+          res => this.listadoProductos = res,
+          error => console.log("Error!: "+error),
+        );
+
+        
+      },
+
+      error => console.log("Error!: " + error),
+
+      ()=>console.log("Termino de listar")
+    );
+
     this.MostrarProdPorMesa(Id);
   }
   
@@ -30,26 +55,20 @@ export class MesasVisualizadorComponent implements OnInit {
   MostrarProdPorMesa(id) {
 
 
-    //Busca la mesa que le llega por la url
-    this.mesa = this.mostrarMesa(id);
+    
+
 
     //Control
 
 
     //De la mesa extraigo el id del pedido
-    let pedidoId = this.mesa.pedidos[0].pedidoId;
+     
 
 
 
     //busco en productoPedidos los prods
 
-    this.ServicioProducto.productosPedidosPorId(pedidoId)
-    .subscribe
-    (
-      /*Los asigno a la variable de listadoProductos*/
-      res => this.listadoProductos = res,
-      error => console.log("Error!: "+error)
-    );
+   
 
 
 
@@ -57,19 +76,6 @@ export class MesasVisualizadorComponent implements OnInit {
     
   }
 
-  mostrarMesa(id): Imesa {
-
-    this.ServicioMesa.MostrarUnaMesa(id)
-      .subscribe
-      (
-        res => {
-          console.log(res);
-          this.mesa = res;
-        },
-        error => console.log("Error!: " + error),
-
-      )
-    return null;
-  }
+ 
 
 }

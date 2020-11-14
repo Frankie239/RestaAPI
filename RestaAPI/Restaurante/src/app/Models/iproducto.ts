@@ -1,7 +1,7 @@
 export interface Iproducto {
-    ProductoId:number;
-    Precio:number;
-    Tipo:string;
-    Nombre:string;
+    productoId:number;
+    precio:number;
+    tipo:string;
+    nombre:string;
 }
 
