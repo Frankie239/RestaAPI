@@ -145,6 +145,23 @@ namespace RestaAPI.Controllers
             return query;
         }
 
+        //Post: api/producto/1/pedido/1
+        [HttpPost("{ProdId:int}/pedido/{PedidoId:int}")]
+
+        public void InsertarProdPedido( int ProdId, int PedidoId)
+        {
+            ProductoPedido pp = new ProductoPedido();
+            pp.PedidoId = PedidoId;
+            pp.ProductoId = ProdId;
+
+            _context.ProductoPedidos.Add(pp);
+            _context.SaveChanges();
+            
+           
+
+
+        }
+
         private bool ProductoExists(int id)
         {
             return _context.Productos.Any(e => e.ProductoId == id);

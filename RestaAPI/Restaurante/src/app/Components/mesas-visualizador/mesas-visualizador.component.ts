@@ -48,34 +48,15 @@ export class MesasVisualizadorComponent implements OnInit {
       ()=>console.log("Termino de listar")
     );
 
-    this.MostrarProdPorMesa(Id);
+    
   }
   
 
-  MostrarProdPorMesa(id) {
+  
 
-
-    
-
-
-    //Control
-
-
-    //De la mesa extraigo el id del pedido
-     
-
-
-
-    //busco en productoPedidos los prods
-
-   
-
-
-
-
-    
+  RedirecctionToAddingProd(id:number){
+    this.router.navigateByUrl("/productos/agregar/"+id);
   }
-
  
 
 }

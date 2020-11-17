@@ -2,6 +2,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, Inject, OnInit } from '@angular/core';
 import {Iproducto} from 'src/app/Models/iproducto';
 import {Router} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -10,16 +11,25 @@ import {Router} from '@angular/router';
   styleUrls: ['./producto.component.css']
 })
 export class ProductoComponent implements OnInit {
-  constructor(private router:Router,@Inject('BASE_URL') private baseUrl:string ) { }
+
+  constructor(private route: ActivatedRoute,@Inject('BASE_URL') private baseUrl:string,private router: Router) { }
 
  
 
   
 
   ngOnInit(): void {
+
+    this.route.queryParams.subscribe(
+      params => {
+        let Id = params['Id'];
+        console.log(Id);
+      }
+    );
     //llamo a la funcion
     this.datosHard();
   }
+  
    //creo el producto
    public prod:Iproducto;
    

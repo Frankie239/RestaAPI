@@ -5,8 +5,8 @@ namespace RestaAPI.Models
 {
     public class ProductoPedido
     {
-        [Key]
-        public int ProductoPedidoId {set;get;}
+        
+        public int Id {set;get;}
 
         public int ProductoId {set;get;}
         [JsonIgnore]

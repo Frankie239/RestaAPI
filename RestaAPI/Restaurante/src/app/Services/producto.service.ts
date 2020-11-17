@@ -14,6 +14,12 @@ export class ProductoService {
   productosPedidosPorId(id):Observable<Iproducto[]>
   {
     return this.http.get<Iproducto[]>(this.apiUrl+"/pedido/"+id);
+
+  }
+
+  addProductoPedido(ProdId:number, PedidoId:number)
+  {
+    //this.http.post<any>(this.apiUrl+"/"+ProdId+"/pedido"+PedidoId);
   }
   
 }

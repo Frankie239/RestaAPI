@@ -10,6 +10,7 @@ import { ProductoComponent } from './components/producto/producto.component';
 import { ProductoEditorComponent } from './Components/producto-editor/producto-editor.component';
 import { MesaComponent } from './Components/mesa/mesa.component';
 import { MesasVisualizadorComponent } from './Components/mesas-visualizador/mesas-visualizador.component';
+import { componentFactoryName } from '@angular/compiler';
 
 
 
@@ -39,6 +40,7 @@ import { MesasVisualizadorComponent } from './Components/mesas-visualizador/mesa
       {path: 'productos/editor', component:ProductoEditorComponent},
       {path: 'mesas',component:MesaComponent},
       {path:'mesas/:id', component:MesasVisualizadorComponent},
+      {path:'productos/agregar/:id', component: ProductoComponent},
       
       
 
