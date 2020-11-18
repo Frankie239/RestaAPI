@@ -15,4 +15,8 @@ export class PedidoService {
   {
     return this.http.post<IPedido>(this.apiUrl,pedido);
   }
+  InsertPedidoWithId(pedido:IPedido,Id:number):Observable<IPedido>
+  {
+    return this.http.post<IPedido>(this.apiUrl+"/mesa/"+Id,pedido);
+  }
 }

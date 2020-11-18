@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Imesa } from 'src/app/Models/imesa';
 import { Iproducto } from 'src/app/Models/iproducto';
+import { IPedido } from 'src/app/Models/ipedido';
 import { Router } from '@angular/router';
 import { MesasService } from 'src/app/Services/mesas.service';
 import { ProductoService } from 'src/app/Services/producto.service';
 import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs';
+import { PedidoService } from 'src/app/Services/pedido.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 
@@ -17,12 +20,13 @@ import { Observable } from 'rxjs';
 })
 export class MesasVisualizadorComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private router: Router, private ServicioMesa: MesasService, private ServicioProducto: ProductoService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private ServicioMesa: MesasService, private ServicioProducto: ProductoService,private PedidoService:PedidoService) { }
   //Lista de prod para mostrarlos en la tabla
   public listadoProductos: Iproducto[] = [];
   mesa: Imesa;
   pedidoId:number;
   Id:number; 
+  newPedido:Pedido = new Pedido();
   
   ngOnInit(): void {
     
@@ -31,11 +35,13 @@ export class MesasVisualizadorComponent implements OnInit {
     //Busca la mesa que le llega por la url
     this.ServicioMesa.MostrarUnaMesa(this.Id)
     .subscribe
+    
     (
       res => {
         
         this.mesa = res;
         this.pedidoId = this.mesa.pedidos[0].pedidoId;
+        
         this.ServicioProducto.productosPedidosPorId(this.pedidoId)
         .subscribe
         (
@@ -68,6 +74,7 @@ export class MesasVisualizadorComponent implements OnInit {
 
 
     
+    this.newPedido.Hora = Date.now();
 
     
   }
@@ -75,17 +82,21 @@ export class MesasVisualizadorComponent implements OnInit {
 
   
 
-  RedirecctionToAddingProd(id:number){
+  RedirecctionToAddingProd(){
     //To DO: Hacer que cuando apretas el boton de agregar prods si no hay un pedido dentro de la lista de pedidos por mesa se agregue
     //Un pedido
     if(this.mesa.pedidos.length == 0)
     {
-
+      this.mesa.pedidos.push(this.CreateNewPedido());
+      
     }
     else
     {
-      this.router.navigateByUrl("/productos/agregar/"+id+"/"+this.mesa.mesaId);
+      this.router.navigateByUrl("/productos/agregar/"+this.mesa.pedidos[0].pedidoId+"/"+this.mesa.mesaId);
     }
+    
+    
+    
     
   }
 
@@ -101,7 +112,34 @@ export class MesasVisualizadorComponent implements OnInit {
 
   }
 
+  CreateNewPedido():IPedido
+  {
+    this.newPedido.Hora = Date.now();
+    
+    this.PedidoService.InsertPedidoWithId(this.newPedido,this.mesa.mesaId)
+    .subscribe
+    (
+      res =>{
+        this.newPedido = res;
+        this.router.navigateByUrl("/productos/agregar/"+this.newPedido.pedidoId+"/"+this.mesa.mesaId);
+      },
+      error => console.error(error)
+      
+    ); 
+
+    return this.newPedido;
+
+
+  }
+
   
  
+
+}
+
+class Pedido implements IPedido{
+  mesa: Imesa;
+  pedidoId: number;
+  Hora: any;
 
 }

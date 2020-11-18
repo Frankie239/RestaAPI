@@ -87,6 +87,15 @@ namespace RestaAPI.Controllers
 
             return CreatedAtAction("GetPedido", new { id = pedido.PedidoId }, pedido);
         }
+
+        [HttpPost("mesa/{id:int}")]
+        public  Pedido PostPedidoWithID(Pedido pedido, int id)
+        {
+            var query = _context.Pedidos.FromSqlRaw(string.Format("exec AddPedido @Fecha = {0},@MesaId = {1}",pedido.Fecha.ToString(),id));
+            return (Pedido)query;
+            
+            
+        }
         
         // DELETE: api/Pedido/5
         [HttpDelete("{id}")]
