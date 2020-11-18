@@ -18,7 +18,7 @@ export class MesasVisualizadorComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router, private ServicioMesa: MesasService, private ServicioProducto: ProductoService) { }
   //Lista de prod para mostrarlos en la tabla
-  listadoProductos: Iproducto[];
+  listadoProductos: Iproducto[] = [];
   mesa: Imesa;
   pedidoId:number;
 
@@ -36,7 +36,11 @@ export class MesasVisualizadorComponent implements OnInit {
         .subscribe
         (
           /*Los asigno a la variable de listadoProductos*/
-          res => this.listadoProductos = res,
+          res => 
+          {
+            this.listadoProductos = res;
+            console.table(res);
+          },
           error => console.log("Error!: "+error),
         );
 
@@ -55,7 +59,7 @@ export class MesasVisualizadorComponent implements OnInit {
   
 
   RedirecctionToAddingProd(id:number){
-    this.router.navigateByUrl("/productos/agregar/"+id);
+    this.router.navigateByUrl("/productos/agregar/"+id+"/"+this.mesa.mesaId);
   }
  
 

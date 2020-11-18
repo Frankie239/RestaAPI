@@ -3,6 +3,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import {Iproducto} from 'src/app/Models/iproducto';
 import {Router} from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import {ProductoService} from 'src/app/Services/producto.service';
+import {ProductoPedidoService} from 'src/app/Services/producto-pedido.service';
 
 
 @Component({
@@ -12,38 +14,56 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductoComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,@Inject('BASE_URL') private baseUrl:string,private router: Router) { }
+  constructor(private route: ActivatedRoute,@Inject('BASE_URL') private baseUrl:string,private router: Router, private service: ProductoService,private serviceProdPedido:ProductoPedidoService) { }
 
  
 
-  
+  public products:Iproducto[];
 
-  ngOnInit(): void {
+  public IdsList:number[] = [];
+  Id:string;
 
+  ngOnInit(): void
+  {
+
+    this.Id = this.route.snapshot.params.id;
+    console.log(this.Id);
+    /*
     this.route.queryParams.subscribe(
       params => {
-        let Id = params['Id'];
-        console.log(Id);
+        this.Id = params['id'];
+        //let mesa = params['mesa'];
+        console.log(this.Id);
+        //console.log(mesa);
       }
     );
-    //llamo a la funcion
-    this.datosHard();
+    */
+    
+
+    this.service.GetAllProds()
+    .subscribe
+    (
+      res => this.products = res,
+      error => console.error(error),
+    );
+
+
+
+    
   }
+
+
+    
+
+
+    
   
    //creo el producto
    public prod:Iproducto;
    
 
   //funcion para ponerle datos
-  datosHard()
-  {
-    
-    this.prod.nombre ="Productito";
-    this.prod.precio=200;
-    this.prod.productoId =1;
-    this.prod.tipo="productos general";
-    console.table(this.prod);
-  }
+  
 
   CargarEditor(id:number)
   {
@@ -56,21 +76,46 @@ export class ProductoComponent implements OnInit {
   }
 
 
-  
-  listaIds = 
-  [
-   {
-      id:1
-   },
-   {
-      id:2
-   },
-   {
-      id:3
-   }
+  GetCheckedElements(id:number,isChecked:boolean){
+    //In its arguments recives the ID of the product and a boolean if it's checked
+
+    if(isChecked)
+    {
+      //If it is the case of the checked being true, add it to the list
+      this.IdsList.push(id);
+    }
+    else
+    {
+      const index = this.IdsList.findIndex( x => x == id);
+      this.IdsList.splice(index,1);
+    }
+
+    console.table(this.IdsList);
 
     
-  ];
-  
 
+      
+    
+  }
+
+  AddAllSelectedProds()
+  {
+    if(this.IdsList.length == 0)
+    {
+      alert("Seleccione productos para ingresar");
+
+    }
+    else
+    {
+      this.IdsList.forEach(id => {
+        this.serviceProdPedido.InsertProdIntoPedido(id,this.Id);
+      });
+    }
+
+  }
 }
+
+
+  
+ 
+

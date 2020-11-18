@@ -10,6 +10,11 @@ export class ProductoService {
   private apiUrl:string = this.baseUrl + "api/producto";
 
   constructor(@Inject('BASE_URL') private baseUrl:string ,private http:HttpClient) { }
+
+  GetAllProds():Observable<Iproducto[]>
+  {
+    return this.http.get<Iproducto[]>(this.apiUrl);
+  }
  
   productosPedidosPorId(id):Observable<Iproducto[]>
   {

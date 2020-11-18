@@ -8,7 +8,7 @@ import {Iproducto} from 'src/app/Models/iproducto';
 })
 export class ProductoPedidoService {
 
-  private apiUrl:string = this.baseUrl + "api/producto";
+  private apiUrl:string = this.baseUrl + "api/Producto";
 
 
   constructor(@Inject('BASE_URL') private baseUrl:string ,private http:HttpClient) { }
@@ -23,9 +23,14 @@ export class ProductoPedidoService {
     return this.http.get<Iproducto>(this.apiUrl+"/"+id)
   }
 
-  InsertProdIntoPedido(prodId:number,pedidoId:number){
+  InsertProdIntoPedido(ProdId:number,PedidoId:any){
     
-    return this.http.post(this.apiUrl +"/"+prodId+"/pedido/"+pedidoId,pedidoId);
+    PedidoId = parseInt(PedidoId);
+    
+    
+    return this.http.post(this.apiUrl +"/"+ProdId+"/pedido/"+PedidoId,null).subscribe();
+    
+    
   }
 
 }

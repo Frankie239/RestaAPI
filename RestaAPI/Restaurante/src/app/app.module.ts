@@ -40,7 +40,7 @@ import { componentFactoryName } from '@angular/compiler';
       {path: 'productos/editor', component:ProductoEditorComponent},
       {path: 'mesas',component:MesaComponent},
       {path:'mesas/:id', component:MesasVisualizadorComponent},
-      {path:'productos/agregar/:id', component: ProductoComponent},
+      {path:'productos/agregar/:id/:mesa', component: ProductoComponent},
       
       
 

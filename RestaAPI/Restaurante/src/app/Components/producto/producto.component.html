@@ -1,46 +1,61 @@
 
 <div id="mainBody">
    
-  <button (click)="CargarEditorNuevo()" class="btn btn-primary">
+  <button (click)="CargarEditorNuevo()" *ngIf="this.Id === 'undefined'" class="btn btn-primary">
     
     Agregar producto
   </button>
     
-    <div  id="Wrapper">
-        <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">nombre</th>
-                <th scope="col">tipo</th>
-                <th scope="col">precio</th>
-              </tr>
-            </thead>
-            <tbody>
-              
-              <tr>
-                <th scope="row">1</th>
-                <td><a (click)="CargarEditor(1)">Hamburguesa con queso</a></td>
-                <td>Carnes</td>
-                <td>$300</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td><a (click)="CargarEditor(2)">fideos con salsa</a></td>
-                <td>Pastas</td>
-                <td>$170</td>
-              </tr>
-            </tbody>
-          </table>
-         
+  <div  id="Wrapper">
 
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Agregar</th>
+          <th scope="col">#</th>
+          <th scope="col">nombre</th>
+          <th scope="col">tipo</th>
+          <th scope="col">precio</th>
+        </tr>
+      </thead>
+
+      <!--This activates if it comes from the controller of "Mesas" to add products to an order-->
+      <tbody *ngIf="this.Id != undefined">
+        
+        <tr *ngFor="let prod of products">
+          <th><input type="checkbox" (change)="GetCheckedElements(prod.productoId,$event.target.checked)"></th>
+          <th scope="row" id="primaryKey">{{prod.productoId}}</th>
+          <td>{{prod.nombre}}</td>
+          <td>{{prod.tipo}}</td>
+          <td>{{prod.precio}}</td>
+        </tr>
+      </tbody>
+      <!--This is the default case, it will activate all the time if you come here to just edit the products-->
+      <tbody *ngIf=" this.Id == undefined">
+        
+        <tr *ngFor="let prod of products">
+          <th scope="row">{{prod.productoId}}</th>
+          <td><a (click)="CargarEditor(prod.productoId)">{{prod.nombre}}</a></td>
+          <td>{{prod.tipo}}</td>
+          <td>{{prod.precio}}</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+
+  <button id="add" class="btn btn-success" (click)="AddAllSelectedProds()">Agregar al pedido</button>
+              
+</div>
+
+            
+         
+        
         
 
 
-    </div>
     
       
 
-</div>
 
 

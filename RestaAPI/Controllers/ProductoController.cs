@@ -133,13 +133,13 @@ namespace RestaAPI.Controllers
             
         }
         //Trae los productos por pedido
-        //7.GET: api/pedido/6
+        //7.GET: api/producto/pedido/6
+
         [HttpGet("pedido/{id}")]
         public List<Producto> ProdByPedido(int id){
             var query = _context.Productos
-            .FromSqlRaw(string.Format("select productoId, precio, Tipo, Nombre from Productos where ProductoId in (select ProductoId from ProductoPedidos where PedidoId ={0})",id.ToString()))
-            .Include(p => p.ProductoPedidos)
-            .Include(p => p.ProductoIngredientes)
+            .FromSqlRaw(string.Format("select p.ProductoId,p.Precio,p.Tipo,p.Nombre from Productos p join ProductoPedidos pp on p.ProductoId = pp.ProductoId and pp.PedidoId = {0}",id.ToString()))
+            
             .ToList();
             
             return query;
@@ -156,11 +156,19 @@ namespace RestaAPI.Controllers
 
             _context.ProductoPedidos.Add(pp);
             _context.SaveChanges();
+           /*
+            _context.ProductoPedidos.FromSqlRaw(string.Format("insert into  Restaurante.dbo.ProductoPedidos values({0}, {1})",ProdId,PedidoId));
+            _context.SaveChanges();
+            //var id = _context.ProductoPedidos.FromSqlRaw("Select @@IDENTITY");
+            */
+            //return _context.ProductoPedidos.Find(id);
+        }
+
+        
             
            
 
 
-        }
 
         private bool ProductoExists(int id)
         {
