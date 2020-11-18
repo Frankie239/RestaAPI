@@ -11,6 +11,7 @@ import { ProductoEditorComponent } from './Components/producto-editor/producto-e
 import { MesaComponent } from './Components/mesa/mesa.component';
 import { MesasVisualizadorComponent } from './Components/mesas-visualizador/mesas-visualizador.component';
 import { componentFactoryName } from '@angular/compiler';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -32,6 +33,8 @@ import { componentFactoryName } from '@angular/compiler';
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       {path:'clientes-listado', component: ClienteComponent},
       {path:'pedidos',component: PedidoComponent},

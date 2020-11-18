@@ -18,7 +18,7 @@ namespace RestaAPI.Models
         
         [JsonIgnore]
         public virtual Cliente Cliente {set;get;}
-        
+        //public int MesaId{set;get;}
         [JsonIgnore]
         public  virtual Mesa Mesa {set;get;}
         public DateTime Fecha {set;get;}

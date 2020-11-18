@@ -1,7 +1,7 @@
 
 <div id="mainBody">
    
-  <button (click)="CargarEditorNuevo()" *ngIf="this.Id === 'undefined'" class="btn btn-primary">
+  <button (click)="CargarEditorNuevo()" *ngIf="this.Id == undefined" class="btn btn-primary">
     
     Agregar producto
   </button>
@@ -44,7 +44,7 @@
     </table>
   </div>
 
-  <button id="add" class="btn btn-success" (click)="AddAllSelectedProds()">Agregar al pedido</button>
+  <button id="add" class="btn btn-success" (click)="AddAllSelectedProds()"*ngIf=" this.Id != undefined">Agregar al pedido</button>
               
 </div>
 
