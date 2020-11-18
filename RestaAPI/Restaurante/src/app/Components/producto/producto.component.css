@@ -14,7 +14,7 @@
     margin-top: 3%;
     display: grid;
     grid-template-columns: 15% 70% 15%;
-    grid-template-rows: auto;
+    grid-template-rows:103px  auto;
     
     background-color:var(--pallete4);
 }

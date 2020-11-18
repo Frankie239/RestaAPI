@@ -11,7 +11,7 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <th scope="col">Agregar</th>
+          <th *ngIf="this.Id != undefined" scope="col">Agregar</th>
           <th scope="col">#</th>
           <th scope="col">nombre</th>
           <th scope="col">tipo</th>
@@ -27,7 +27,7 @@
           <th scope="row" id="primaryKey">{{prod.productoId}}</th>
           <td>{{prod.nombre}}</td>
           <td>{{prod.tipo}}</td>
-          <td>{{prod.precio}}</td>
+          <td>$ {{prod.precio|currency:'ARS'}}</td>
         </tr>
       </tbody>
       <!--This is the default case, it will activate all the time if you come here to just edit the products-->

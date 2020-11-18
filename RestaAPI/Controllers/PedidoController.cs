@@ -89,10 +89,10 @@ namespace RestaAPI.Controllers
         }
 
         [HttpPost("mesa/{id:int}")]
-        public  Pedido PostPedidoWithID(Pedido pedido, int id)
+        public  void PostPedidoWithID(Pedido pedido, int id)
         {
             var query = _context.Pedidos.FromSqlRaw(string.Format("exec AddPedido @Fecha = {0},@MesaId = {1}",pedido.Fecha.ToString(),id));
-            return (Pedido)query;
+            //return (Pedido)query;
             
             
         }

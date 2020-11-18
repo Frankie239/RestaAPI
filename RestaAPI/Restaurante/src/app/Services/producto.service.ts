@@ -37,6 +37,31 @@ export class ProductoService {
     //this.http.post<any>(this.apiUrl+"/"+ProdId+"/pedido"+PedidoId);
   }
 
+  PostNewProd(product:Iproducto):Observable<void>
+  {
+    const headers = {
+      'Content-Type':'application/json',
+      'Access-Control-Allow-Origin':'*',
+      'Access-Control-Allow-Methods':'POST, PUT,GET,DELETE',
+    };
+    return this.http.post<void>(this.apiUrl,product,{headers});
+  }
+
+  UpdateProd(product:Iproducto)
+  {
+    const headers = {
+      'Content-Type':'application/json',
+      'Access-Control-Allow-Origin':'http://localhost:5000',
+      'Access-Control-Allow-Methods':'POST, PUT,GET,DELETE',
+    };
+    return this.http.put<any>(this.apiUrl+"/"+product.productoId,product,{headers});
+  }
+
+  DeleteProd(id:number):Observable<Iproducto>
+  {
+    return this.http.delete<Iproducto>(this.apiUrl+"/"+id);
+  }
+
 
 
   

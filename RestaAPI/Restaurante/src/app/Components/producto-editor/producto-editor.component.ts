@@ -3,7 +3,9 @@ import {ProductoService} from 'src/app/Services/producto.service';
 import {Iproducto} from "src/app/Models/iproducto";
 import {Router, ActivatedRoute} from "@angular/router";
 import {FormBuilder,FormGroup}from '@angular/forms';
-import { Console } from 'console';
+
+
+
 
 
 @Component({
@@ -17,6 +19,7 @@ export class ProductoEditorComponent implements OnInit {
   formProductos:FormGroup;
   productoId:number;
   modoEdicion:boolean = false;
+  productForm:Iproducto;
 
   constructor(private service:ProductoService,private ActivatedRoute:ActivatedRoute,private router:Router,private fb:FormBuilder,)
   {
@@ -28,6 +31,12 @@ export class ProductoEditorComponent implements OnInit {
         this.productoId = params['id'];
         if(isNaN(this.productoId))
         {
+          this.productForm = {
+            productoId:null,
+            nombre:'',
+            tipo:'',
+            precio:0
+          }
           return;
         }
         else
@@ -38,24 +47,24 @@ export class ProductoEditorComponent implements OnInit {
           (
             res => 
             {
-              console.table(res);
+              //console.table(res);
               this.cargarFormulario(res);
             },
             error => console.error(error)
-          )
+          );
         }
       }
-    )
+    );
     
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
 
     this.formProductos = this.fb.group(
       {
-        prodName:'',
-        prodPrice:0,
-        prodType:''
+        nombre:'',
+        precio:0,
+        tipo:''
       }
     );
   }
@@ -64,11 +73,64 @@ export class ProductoEditorComponent implements OnInit {
   cargarFormulario(producto:Iproducto){
     //se muestra el producto
     this.formProductos.patchValue({
-      prodName:producto.nombre,
-      prodPrice:producto.precio,
-      prodType:producto.tipo,
+      nombre:producto.nombre,
+      precio:producto.precio,
+      tipo:producto.tipo,
     });
     //this.save();
+  }
+
+  Save()
+  {
+    const productForm:Iproducto =  Object.assign({},this.formProductos.value);
+    
+
+    if(this.modoEdicion)
+    {
+      var newProd :Iproducto = {
+        productoId:this.productoId,
+        nombre:productForm.nombre,
+        precio:productForm.precio,
+        tipo:productForm.tipo
+      };
+
+      this.service.UpdateProd(newProd)
+      .subscribe
+      (
+        res => alert("Modificado OK"),
+        error=> alert("error")
+        
+      );
+    }
+
+    else
+    {
+      var newProd : Iproducto={
+        productoId:null,
+        nombre:productForm.nombre,
+        precio:productForm.precio,
+        tipo:productForm.tipo
+      };
+      console.table(newProd);
+      this.service.PostNewProd(productForm)
+      .subscribe
+      (
+        res => console.table(res),
+        error=> alert("Error")
+      );
+    }
+
+  }
+
+  DeleteProd()
+  {
+    this.service.DeleteProd(this.productoId)
+    .subscribe
+    (
+      res => console.log(res),
+      error => console.error("Error al borrar"),
+
+    );
   }
 }
       

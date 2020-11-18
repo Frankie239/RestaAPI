@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace RestaAPI.Models
 {
@@ -23,7 +24,10 @@ namespace RestaAPI.Models
         }
         public string Tipo{set;get;}
         public string Nombre{set;get;}
+
+        [JsonIgnore]
         public virtual IEnumerable<ProductoIngrediente> ProductoIngredientes{set;get;}
+        [JsonIgnore]
         public virtual IEnumerable<ProductoPedido> ProductoPedidos{set;get;}
 
        

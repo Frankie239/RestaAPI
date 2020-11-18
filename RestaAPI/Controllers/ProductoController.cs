@@ -84,7 +84,7 @@ namespace RestaAPI.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Producto>> PostProducto(Producto producto)
+        public async Task<ActionResult<Producto>> PostProducto([FromBody]Producto producto)
         {
             _context.Productos.Add(producto);
             await _context.SaveChangesAsync();
