@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
 
+
 @Component({
   selector: 'app-mesas-visualizador',
   templateUrl: './mesas-visualizador.component.html',
@@ -18,14 +19,17 @@ export class MesasVisualizadorComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router, private ServicioMesa: MesasService, private ServicioProducto: ProductoService) { }
   //Lista de prod para mostrarlos en la tabla
-  listadoProductos: Iproducto[] = [];
+  public listadoProductos: Iproducto[] = [];
   mesa: Imesa;
   pedidoId:number;
-
+  Id:number; 
+  
   ngOnInit(): void {
-    let Id = this.route.snapshot.params.id;
+    
+    this.listadoProductos =
+    this.Id = this.route.snapshot.params.id;
     //Busca la mesa que le llega por la url
-    this.ServicioMesa.MostrarUnaMesa(Id)
+    this.ServicioMesa.MostrarUnaMesa(this.Id)
     .subscribe
     (
       res => {
@@ -39,6 +43,16 @@ export class MesasVisualizadorComponent implements OnInit {
           res => 
           {
             this.listadoProductos = res;
+            //Check if the listadoProductos contains some prods, if it's true, it should be ocuped
+            if(this.listadoProductos.length > 0)
+            {
+              this.UpdateMesaState("ocupada");
+            }
+            else
+            {
+              //Else: The table is free
+              this.UpdateMesaState("libre");
+            }
             console.table(res);
           },
           error => console.log("Error!: "+error),
@@ -52,6 +66,9 @@ export class MesasVisualizadorComponent implements OnInit {
       ()=>console.log("Termino de listar")
     );
 
+
+    
+
     
   }
   
@@ -59,8 +76,32 @@ export class MesasVisualizadorComponent implements OnInit {
   
 
   RedirecctionToAddingProd(id:number){
-    this.router.navigateByUrl("/productos/agregar/"+id+"/"+this.mesa.mesaId);
+    //To DO: Hacer que cuando apretas el boton de agregar prods si no hay un pedido dentro de la lista de pedidos por mesa se agregue
+    //Un pedido
+    if(this.mesa.pedidos.length == 0)
+    {
+
+    }
+    else
+    {
+      this.router.navigateByUrl("/productos/agregar/"+id+"/"+this.mesa.mesaId);
+    }
+    
   }
+
+  UpdateMesaState(state:string)
+  {
+    
+    this.mesa.estado = state;
+    this.ServicioMesa.UpdateMesa(this.Id,this.mesa)
+    .subscribe(
+      res => console.log(res),
+      error => console.error(error)
+    );
+
+  }
+
+  
  
 
 }

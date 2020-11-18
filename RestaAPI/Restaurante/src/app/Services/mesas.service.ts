@@ -26,4 +26,9 @@ export class MesasService {
     return this.http.get<Imesa>(this.apiUrl+"/"+id);
   }
 
+  UpdateMesa(id:number, mesa:Imesa):Observable<Imesa>
+  {
+    return this.http.put<Imesa>(this.apiUrl+"/"+id,mesa);
+  }
+
 }

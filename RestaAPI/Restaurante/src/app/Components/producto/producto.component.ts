@@ -22,12 +22,14 @@ export class ProductoComponent implements OnInit {
 
   public IdsList:number[] = [];
   Id:string;
+  mesa:string;
+
 
   ngOnInit(): void
   {
 
     this.Id = this.route.snapshot.params.id;
-    console.log(this.Id);
+    this.mesa = this.route.snapshot.params.mesa;
     /*
     this.route.queryParams.subscribe(
       params => {
@@ -38,6 +40,7 @@ export class ProductoComponent implements OnInit {
       }
     );
     */
+   console.log(this.mesa);
     
 
     this.service.GetAllProds()
@@ -111,7 +114,13 @@ export class ProductoComponent implements OnInit {
         this.serviceProdPedido.InsertProdIntoPedido(id,this.Id);
       });
     }
+    this.ReturnToMesaVisualizador();
 
+  }
+
+  ReturnToMesaVisualizador()
+  {
+    this.router.navigateByUrl("/mesas/"+this.mesa);
   }
 }
 

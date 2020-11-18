@@ -35,3 +35,9 @@ h1
 {
     grid-row: 1/2;
 }
+
+#reserva
+{
+    grid-column: 3;
+    grid-row: 3;
+}

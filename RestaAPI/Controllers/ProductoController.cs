@@ -139,8 +139,8 @@ namespace RestaAPI.Controllers
         public List<Producto> ProdByPedido(int id){
             var query = _context.Productos
             .FromSqlRaw(string.Format("select p.ProductoId,p.Precio,p.Tipo,p.Nombre from Productos p join ProductoPedidos pp on p.ProductoId = pp.ProductoId and pp.PedidoId = {0}",id.ToString()))
-            
             .ToList();
+            
             
             return query;
         }

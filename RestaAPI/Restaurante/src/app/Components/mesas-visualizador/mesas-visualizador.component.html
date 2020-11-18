@@ -1,5 +1,5 @@
 <h1>Mesa {{mesa.mesaId}}</h1>
-<div id="wrapper" *ngIf="listadoProductos.length > 0 ">
+<div id="wrapper" >
     
     
     <table class="table table-striped" >
@@ -26,7 +26,9 @@
     <button class="btn btn-danger">Eliminar</button>
     <button id="agregar" (click)="RedirecctionToAddingProd(pedidoId)" class="btn btn-success">Agregar producto</button>
     
+    
 </div>
+<button class="btn btn-warning"(click)="UpdateMesaState('reservada')" id="reserva" *ngIf="listadoProductos.length <= 0">Reservar</button>
 
   
 

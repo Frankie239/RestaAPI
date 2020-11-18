@@ -1,7 +1,7 @@
 import { Injectable,Inject  } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {Iproducto} from 'src/app/Models/iproducto';
+import {IPedido} from 'src/app/Models/ipedido';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,5 +10,9 @@ export class PedidoService {
 
   constructor(@Inject('BASE_URL') private baseUrl:string ,private http:HttpClient) { }
  
-
+  //Agregar metodo en el servicio para agregar un pedido
+  InsertNewPedido(pedido:IPedido):Observable<IPedido>
+  {
+    return this.http.post<IPedido>(this.apiUrl,pedido);
+  }
 }
