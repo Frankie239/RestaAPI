@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ProductoService} from 'src/app/Services/producto.service';
 import {Iproducto} from "src/app/Models/iproducto";
 import {Router, ActivatedRoute} from "@angular/router";
-import {FormBuilder,FormGroup}from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Location } from '@angular/common';
 
 
 
@@ -21,7 +22,7 @@ export class ProductoEditorComponent implements OnInit {
   modoEdicion:boolean = false;
   productForm:Iproducto;
 
-  constructor(private service:ProductoService,private ActivatedRoute:ActivatedRoute,private router:Router,private fb:FormBuilder,)
+  constructor(private _location: Location, private service:ProductoService,private ActivatedRoute:ActivatedRoute,private router:Router,private fb:FormBuilder,)
   {
     this.ActivatedRoute.params
     .subscribe
@@ -115,9 +116,14 @@ export class ProductoEditorComponent implements OnInit {
       this.service.PostNewProd(productForm)
       .subscribe
       (
-        res => console.table(res),
+        res => { 
+          console.table(res);
+          this.GoBack();
+        },
         error=> alert("Error")
       );
+
+
     }
 
   }
@@ -127,10 +133,22 @@ export class ProductoEditorComponent implements OnInit {
     this.service.DeleteProd(this.productoId)
     .subscribe
     (
-      res => console.log(res),
+      res => {
+        console.log(res);
+        this.GoBack();
+        
+      },
       error => console.error("Error al borrar"),
 
     );
+  }
+
+  /**
+   * Returns to the last page, it was made to redirect back fast to the all products visualization
+   */
+  GoBack()
+  {
+    this._location.back();
   }
 }
       

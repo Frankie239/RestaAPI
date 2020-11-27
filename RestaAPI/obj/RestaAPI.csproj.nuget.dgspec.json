@@ -1,25 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Fran\\source\\repos\\RestaAPI\\RestaAPI\\RestaAPI.csproj": {}
+    "C:\\Users\\fran9\\Documents\\GitHub\\RestaAPI\\RestaAPI\\RestaAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Fran\\source\\repos\\RestaAPI\\RestaAPI\\RestaAPI.csproj": {
+    "C:\\Users\\fran9\\Documents\\GitHub\\RestaAPI\\RestaAPI\\RestaAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Fran\\source\\repos\\RestaAPI\\RestaAPI\\RestaAPI.csproj",
+        "projectUniqueName": "C:\\Users\\fran9\\Documents\\GitHub\\RestaAPI\\RestaAPI\\RestaAPI.csproj",
         "projectName": "RestaAPI",
-        "projectPath": "C:\\Users\\Fran\\source\\repos\\RestaAPI\\RestaAPI\\RestaAPI.csproj",
-        "packagesPath": "C:\\Users\\Fran\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Fran\\source\\repos\\RestaAPI\\RestaAPI\\obj\\",
+        "projectPath": "C:\\Users\\fran9\\Documents\\GitHub\\RestaAPI\\RestaAPI\\RestaAPI.csproj",
+        "packagesPath": "C:\\Users\\fran9\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fran9\\Documents\\GitHub\\RestaAPI\\RestaAPI\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Fran\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\fran9\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -30,6 +26,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -41,6 +38,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.AspNetCore.SpaServices": {
               "target": "Package",
@@ -79,12 +77,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[3.1.2, 3.1.2]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -93,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

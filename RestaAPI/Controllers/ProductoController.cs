@@ -137,6 +137,8 @@ namespace RestaAPI.Controllers
 
         [HttpGet("pedido/{id}")]
         public List<Producto> ProdByPedido(int id){
+
+            //TODO: Refactor into a stored procedure
             var query = _context.Productos
             .FromSqlRaw(string.Format("select p.ProductoId,p.Precio,p.Tipo,p.Nombre from Productos p join ProductoPedidos pp on p.ProductoId = pp.ProductoId and pp.PedidoId = {0}",id.ToString()))
             .ToList();
@@ -156,7 +158,10 @@ namespace RestaAPI.Controllers
 
             _context.ProductoPedidos.Add(pp);
             _context.SaveChanges();
+
+            
            /*
+           *I Think this works
             _context.ProductoPedidos.FromSqlRaw(string.Format("insert into  Restaurante.dbo.ProductoPedidos values({0}, {1})",ProdId,PedidoId));
             _context.SaveChanges();
             //var id = _context.ProductoPedidos.FromSqlRaw("Select @@IDENTITY");

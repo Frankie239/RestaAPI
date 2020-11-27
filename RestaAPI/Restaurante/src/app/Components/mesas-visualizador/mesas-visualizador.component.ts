@@ -80,11 +80,14 @@ export class MesasVisualizadorComponent implements OnInit {
   }
   
 
-  
+  /**
+   * redirects to the view of producto-editor
+   * 
+   */
 
   RedirecctionToAddingProd(){
-    //To DO: Hacer que cuando apretas el boton de agregar prods si no hay un pedido dentro de la lista de pedidos por mesa se agregue
-    //Un pedido
+    //ToDO: Hacer que cuando apretas el boton de agregar prods si no hay un pedido dentro de la lista de pedidos por mesa se agregue Un pedido
+    
     if(this.mesa.pedidos.length == 0)
     {
       this.mesa.pedidos.push(this.CreateNewPedido());
@@ -100,6 +103,10 @@ export class MesasVisualizadorComponent implements OnInit {
     
   }
 
+  /**
+   * Calls the service to change the state of a table
+   * @param state the state-string, can be "ocupada, libre or reservada"
+   */
   UpdateMesaState(state:string)
   {
     

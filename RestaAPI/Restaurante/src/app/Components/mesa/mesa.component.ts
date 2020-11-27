@@ -19,6 +19,9 @@ export class MesaComponent implements OnInit {
     this.CargarMesas();
     //console.log(this.listaMesas[3].pedidos[0]);
 
+     
+    
+
   }
 
 

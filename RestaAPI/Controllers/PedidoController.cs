@@ -88,6 +88,13 @@ namespace RestaAPI.Controllers
             return CreatedAtAction("GetPedido", new { id = pedido.PedidoId }, pedido);
         }
 
+
+        /*
+        * POST: api/pedido/mesa/id
+        -Adds a product into the order list
+        
+        */
+
         [HttpPost("mesa/{id:int}")]
         public  void PostPedidoWithID(Pedido pedido, int id)
         {
@@ -97,7 +104,7 @@ namespace RestaAPI.Controllers
             
         }
         
-        // DELETE: api/Pedido/5
+        // *DELETE: api/Pedido/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Pedido>> DeletePedido(int id)
         {
@@ -113,13 +120,20 @@ namespace RestaAPI.Controllers
             return pedido;
         }
 
-        //8. GET: api/pedido/producto/6
+        
+
+        /*
+        *8. GET: api/pedido/producto/6
+        -Deletes all the orders into the intermediate table ProductoPedido Where the ID Matches
+        
+        
+        */
         [HttpDelete("producto/{id}")]
         public Pedido DeletePedidoConIntermedia(int id)
         {
 
             var pedido = _context.Pedidos.Find(id);
-            //var pedidoProd = _context.ProductoPedidos.FromSqlRaw(string.Format("SELECT * FROM ProductoPedidos where PedidoId = {0}",id)).ToList();
+            ////var pedidoProd = _context.ProductoPedidos.FromSqlRaw(string.Format("SELECT * FROM ProductoPedidos where PedidoId = {0}",id)).ToList();
             var pedidoProd = _context.ProductoPedidos
             .Find(id);
 
@@ -136,6 +150,8 @@ namespace RestaAPI.Controllers
 
         }
 
+        ///<summary>Returns a order by its table number</summary>
+        
         //5. GET: api/Pedido/mesa/6
         [HttpGet("Mesa/{id}")]
         public List<Pedido> getByMesa(int id){
