@@ -11,10 +11,10 @@
 
 #mainBody
 {
-    margin-top: 3%;
+    margin-top: 1%;
     display: grid;
     grid-template-columns: 15% 70% 15%;
-    grid-template-rows:103px  auto;
+    grid-template-rows:45px auto 83px;
     
     background-color:var(--pallete4);
 }
@@ -22,7 +22,7 @@
 #Wrapper
 {
     grid-column: 2/3;
-    grid-row: auto;
+    grid-row: 2;
     display:flex;
     flex-direction: row;
     justify-content: space-around;
@@ -33,8 +33,44 @@
     width: 69.3%;
     height: 36%;
 }
-
+.btn-success
+{
+    grid-row: 3;
+    grid-column: 2;
+    justify-self: right;
+    align-self: center;
+    width: auto;
+    height: 50px;
+}
 #add
 {
     align-self: flex-end;
+}
+
+#searchbar
+{
+    align-content: baseline;
+    align-self: flex-end;
+    margin-bottom: 1%;
+    display: flex;
+    grid-row: 1;
+    grid-column: 2;
+}
+#myInput
+{
+	width: 100%;
+	border-radius: 8px;
+	border: 2px solid #dee2e6;
+	height: 40px;
+}
+
+#cancel {
+	grid-column: 2;
+	justify-self: left;
+	width: auto;
+	/* display: flex; */
+	grid-row: 3;
+	align-self: flex-end;
+	height: 50px;
+	align-content: center;
 }

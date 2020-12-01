@@ -7,6 +7,7 @@ import {ProductoService} from 'src/app/Services/producto.service';
 import {ProductoPedidoService} from 'src/app/Services/producto-pedido.service';
 
 
+
 @Component({
   selector: 'app-producto',
   templateUrl: './producto.component.html',
@@ -18,7 +19,8 @@ export class ProductoComponent implements OnInit {
 
  
 
-  public products:Iproducto[];
+  public products: Iproducto[];
+  public productsSearch: Iproducto[];
 
   public IdsList:number[] = [];
   Id:string;
@@ -55,6 +57,7 @@ export class ProductoComponent implements OnInit {
     
   }
 
+  
 
     
 
@@ -122,6 +125,46 @@ export class ProductoComponent implements OnInit {
   {
     this.router.navigateByUrl("/mesas/"+this.mesa);
   }
+
+  //TODO: Hacer que filtre los productos
+  Buscar()
+  {
+    var input, filter:string, tableRow:any,nameText:string, txtValue;
+    //Get the element that has the value to search
+    input = document.getElementById("myInput");
+    //grab the text
+    filter = input.value.toUpperCase();
+    //TEST: console.log(filter)
+
+    
+    tableRow = document.getElementsByTagName("tr");
+
+    //Get all the names
+    let tableData = document.getElementsByClassName("name");
+    console.log(filter);
+    console.table(this.products);
+    const regex = /(pescado)/gmi;
+    console.log(regex);
+    this.products.filter(p => regex.exec(p.nombre));
+    console.table(this.products);
+
+    /*
+    ! Old code
+    for (i = 0; i < li.length; i++) {
+
+
+      
+        a = li[i].getElementsByTagName("p")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+      
+    }
+    */
+}
 }
 
 

@@ -7,7 +7,7 @@ import {Iproducto} from 'src/app/Models/iproducto';
   providedIn: 'root'
 })
 export class ProductoService {
-  private apiUrl:string = this.baseUrl + "api/producto";
+  private apiUrl:string = this.baseUrl + "api/Producto";
 
   constructor(@Inject('BASE_URL') private baseUrl:string ,private http:HttpClient) { }
 
@@ -30,7 +30,8 @@ export class ProductoService {
 
   }
 
-  //Adding a prod to a order OUTDATED
+  //Adding a prod to a order 
+  //!OUTDATED
 
   addProductoPedido(ProdId:number, PedidoId:number)
   {
@@ -51,7 +52,7 @@ export class ProductoService {
   {
     const headers = {
       'Content-Type':'application/json',
-      'Access-Control-Allow-Origin':'http://localhost:5000',
+      'Access-Control-Allow-Origin':'http://localhost:5001',
       'Access-Control-Allow-Methods':'POST, PUT,GET,DELETE',
     };
     return this.http.put<any>(this.apiUrl+"/"+product.productoId,product,{headers});

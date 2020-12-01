@@ -1,19 +1,27 @@
-
+<head>
+  <script src="https://kit.fontawesome.com/9a2b65ee6c.js" crossorigin="anonymous"></script>
+</head>
 <div id="mainBody">
    
   <button (click)="CargarEditorNuevo()" *ngIf="this.Id == undefined" class="btn btn-primary">
     Agregar 
   </button>
     
-  <div class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
+  <!--
+    ToDo:Hacer que se cierre la alerta cuando se le da click en la cruz(No se por que no funciona)
+    <div class="alert alert-primary alert-dismissible fade show">
+    Producto Agregado correctamente.
+    <span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
     
+    </div>
+  -->
+  <div id="searchbar">
+    <i class="fas fa-search"></i>
+    <input type="text" id="myInput" class="form-control-form-control-sm" (keyup) = "Buscar()" type="text" placeholder="Buscar">
   </div>
     
   <div  id="Wrapper">
+  
     
     <table class="table table-hover">
       <thead>
@@ -32,8 +40,8 @@
         <tr *ngFor="let prod of products">
           <th><input type="checkbox" (change)="GetCheckedElements(prod.productoId,$event.target.checked)"></th>
           <th scope="row" id="primaryKey">{{prod.productoId}}</th>
-          <td>{{prod.nombre}}</td>
-          <td>{{prod.tipo}}</td>
+          <td class ="name">{{prod.nombre}}</td>
+          <td class ="type" >{{prod.tipo}}</td>
           <td>$ {{prod.precio|currency:'ARS'}}</td>
         </tr>
       </tbody>
@@ -52,6 +60,7 @@
   </div>
 
   <button id="add" class="btn btn-success" (click)="AddAllSelectedProds()"*ngIf=" this.Id != undefined">Agregar al pedido</button>
+  <button id="cancel" class="btn btn-danger" >Cancelar</button>
               
 </div>
 
