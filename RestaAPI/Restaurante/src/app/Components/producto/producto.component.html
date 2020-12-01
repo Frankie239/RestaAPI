@@ -35,7 +35,7 @@
       </thead>
 
       <!--This activates if it comes from the controller of "Mesas" to add products to an order-->
-      <tbody *ngIf="this.Id != undefined">
+      <tbody *ngIf="this.Id != undefined && !this.searchMode">
         
         <tr *ngFor="let prod of products">
           <th><input type="checkbox" (change)="GetCheckedElements(prod.productoId,$event.target.checked)"></th>
@@ -46,7 +46,7 @@
         </tr>
       </tbody>
       <!--This is the default case, it will activate all the time if you come here to just edit the products-->
-      <tbody *ngIf=" this.Id == undefined">
+      <tbody *ngIf=" this.Id == undefined && !this.searchMode">
         
         <tr *ngFor="let prod of products">
           <th scope="row">{{prod.productoId}}</th>
@@ -55,6 +55,28 @@
           <td>{{prod.precio}}</td>
         </tr>
         
+      </tbody>
+      
+      <tbody *ngIf=" this.searchMode">
+        
+        <tr *ngFor="let prod of productsSearch">
+          <th scope="row">{{prod.productoId}}</th>
+          <td><a (click)="CargarEditor(prod.productoId)">{{prod.nombre}}</a></td>
+          <td>{{prod.tipo}}</td>
+          <td>{{prod.precio}}</td>
+        </tr>
+        
+      </tbody>
+
+      <tbody *ngIf="this.Id != undefined && this.searchMode">
+        
+        <tr *ngFor="let prod of products">
+          <th><input type="checkbox" (change)="GetCheckedElements(prod.productoId,$event.target.checked)"></th>
+          <th scope="row" id="primaryKey">{{prod.productoId}}</th>
+          <td class ="name">{{prod.nombre}}</td>
+          <td class ="type" >{{prod.tipo}}</td>
+          <td>$ {{prod.precio|currency:'ARS'}}</td>
+        </tr>
       </tbody>
     </table>
   </div>

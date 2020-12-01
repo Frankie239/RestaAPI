@@ -50,11 +50,12 @@
 #searchbar
 {
     align-content: baseline;
-    align-self: flex-end;
+    align-self: center;
     margin-bottom: 1%;
     display: flex;
     grid-row: 1;
     grid-column: 2;
+    width: 80%;
 }
 #myInput
 {
@@ -73,4 +74,16 @@
 	align-self: flex-end;
 	height: 50px;
 	align-content: center;
+}
+.btn-primary
+{
+    grid-row: 1;
+    grid-column: 2;
+    float: left;
+    align-content: flex-end;
+    align-self: center;
+    justify-self: end;
+    width: auto;
+    height: 46px;
+
 }

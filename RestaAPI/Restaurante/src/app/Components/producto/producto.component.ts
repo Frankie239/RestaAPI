@@ -20,7 +20,8 @@ export class ProductoComponent implements OnInit {
  
 
   public products: Iproducto[];
-  public productsSearch: Iproducto[];
+  public productsSearch: Iproducto[] = [];
+  public searchMode: boolean = false;
 
   public IdsList:number[] = [];
   Id:string;
@@ -129,24 +130,31 @@ export class ProductoComponent implements OnInit {
   //TODO: Hacer que filtre los productos
   Buscar()
   {
+    this.productsSearch = [];
+    this.searchMode = true;
     var input, filter:string, tableRow:any,nameText:string, txtValue;
     //Get the element that has the value to search
     input = document.getElementById("myInput");
     //grab the text
     filter = input.value.toUpperCase();
     //TEST: console.log(filter)
+    var regex = new RegExp("(" + filter + ")", "gmi");
+    console.log(regex);
 
     
-    tableRow = document.getElementsByTagName("tr");
-
-    //Get all the names
-    let tableData = document.getElementsByClassName("name");
-    console.log(filter);
-    console.table(this.products);
-    const regex = /(pescado)/gmi;
-    console.log(regex);
-    this.products.filter(p => regex.exec(p.nombre));
-    console.table(this.products);
+   
+    
+    /////const regex = /(pescado)/gmi;
+    this.products.forEach(prod => {
+      if (regex.test(prod.nombre) && !this.productsSearch.includes(prod))
+      {
+        this.productsSearch.push(prod);
+        console.table(this.productsSearch);
+      }
+      
+    });
+    //this.productsSearch = [];
+    //console.table(this.products);
 
     /*
     ! Old code
