@@ -130,49 +130,42 @@ export class ProductoComponent implements OnInit {
   //TODO: Hacer que filtre los productos
   Buscar()
   {
+    //First, clean the list, because its global
     this.productsSearch = [];
+    //Activate the search mode(just this to show the correct information on the view)
     this.searchMode = true;
-    var input, filter:string, tableRow:any,nameText:string, txtValue;
+
+    //declare variables
+    var input, filter: string;
+
     //Get the element that has the value to search
     input = document.getElementById("myInput");
-    //grab the text
+
+    //grab just the text
     filter = input.value.toUpperCase();
-    //TEST: console.log(filter)
+
+    //Put it into a REGEX
     var regex = new RegExp("(" + filter + ")", "gmi");
-    console.log(regex);
+
+    //TEST: console.log(regex);
+    
+    //Search in all the products the match for the regex:
+    this.products.forEach(prod => {
+      //If i'ts match AND the product i'ts not into the list already(It will be repeating if not)
+      if (regex.test(prod.nombre) && !this.productsSearch.includes(prod))
+      {
+        //Add it to the search list.
+        this.productsSearch.push(prod);
+        
+      }
+      
+    });
+  }
 
     
    
     
-    /////const regex = /(pescado)/gmi;
-    this.products.forEach(prod => {
-      if (regex.test(prod.nombre) && !this.productsSearch.includes(prod))
-      {
-        this.productsSearch.push(prod);
-        console.table(this.productsSearch);
-      }
-      
-    });
-    //this.productsSearch = [];
-    //console.table(this.products);
-
-    /*
-    ! Old code
-    for (i = 0; i < li.length; i++) {
-
-
-      
-        a = li[i].getElementsByTagName("p")[0];
-        txtValue = a.textContent || a.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
-        }
-      
-    }
-    */
-}
+  
 }
 
 
