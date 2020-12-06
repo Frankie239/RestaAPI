@@ -8,7 +8,8 @@ import {IPedido} from 'src/app/Models/ipedido';
 export class PedidoService {
   private apiUrl:string = this.baseUrl + "api/pedido";
 
-  constructor(@Inject('BASE_URL') private baseUrl:string ,private http:HttpClient) { }
+  constructor(@Inject('BASE_URL') private baseUrl: string, private http: HttpClient) { }
+  
  
   //Agregar metodo en el servicio para agregar un pedido
   InsertNewPedido(pedido:IPedido):Observable<IPedido>
@@ -17,6 +18,13 @@ export class PedidoService {
   }
   InsertPedidoWithId(pedido:IPedido,Id:number):Observable<IPedido>
   {
-    return this.http.post<IPedido>(this.apiUrl+"/mesa/"+Id,pedido);
+    pedido.mesa = Id;
+
+    //? This does not exists!
+    //return this.http.post<IPedido>(this.apiUrl + "/mesa/" + Id, pedido);
+
+    return this.http.post<IPedido>(this.apiUrl,pedido);
+    
+    
   }
 }

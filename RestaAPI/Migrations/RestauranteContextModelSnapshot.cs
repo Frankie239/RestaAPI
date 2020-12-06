@@ -97,7 +97,7 @@ namespace RestaAPI.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("MesaId")
+                    b.Property<int>("MesaId")
                         .HasColumnType("int");
 
                     b.Property<string>("MozoId")
@@ -176,7 +176,9 @@ namespace RestaAPI.Migrations
 
                     b.HasOne("RestaAPI.Models.Mesa", "Mesa")
                         .WithMany("pedidos")
-                        .HasForeignKey("MesaId");
+                        .HasForeignKey("MesaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("RestaAPI.Models.Mozo", null)
                         .WithMany("Pedidos")

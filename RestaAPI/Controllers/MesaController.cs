@@ -24,7 +24,9 @@ namespace RestaAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Mesa>>> GetMesas()
         {
-            return await _context.Mesas.Include(m => m.pedidos).ToListAsync();
+            //!This returns a JSON EXCEPTION
+            //return await _context.Mesas.Include(m => m.pedidos).ToListAsync();
+            return await _context.Mesas.ToListAsync();
         }
 
         // GET: api/Mesa/5

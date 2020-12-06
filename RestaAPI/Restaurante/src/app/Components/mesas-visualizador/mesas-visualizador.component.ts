@@ -145,7 +145,7 @@ export class MesasVisualizadorComponent implements OnInit {
 }
 
 class Pedido implements IPedido{
-  mesa: Imesa;
+  mesa: number;
   pedidoId: number;
   Hora: any;
 

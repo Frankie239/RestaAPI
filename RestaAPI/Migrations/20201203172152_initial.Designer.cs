@@ -10,8 +10,8 @@ using RestaAPI.Models;
 namespace RestaAPI.Migrations
 {
     [DbContext(typeof(RestauranteContext))]
-    [Migration("20201114144354_cambiados_los_idProdPedido")]
-    partial class cambiados_los_idProdPedido
+    [Migration("20201203172152_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -99,7 +99,7 @@ namespace RestaAPI.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("MesaId")
+                    b.Property<int>("MesaId")
                         .HasColumnType("int");
 
                     b.Property<string>("MozoId")
@@ -163,9 +163,6 @@ namespace RestaAPI.Migrations
                     b.Property<int>("PedidoId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
                     b.HasKey("ProductoId", "PedidoId");
 
                     b.HasIndex("PedidoId");
@@ -181,7 +178,9 @@ namespace RestaAPI.Migrations
 
                     b.HasOne("RestaAPI.Models.Mesa", "Mesa")
                         .WithMany("pedidos")
-                        .HasForeignKey("MesaId");
+                        .HasForeignKey("MesaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("RestaAPI.Models.Mozo", null)
                         .WithMany("Pedidos")

@@ -25,6 +25,11 @@ form
 {
     align-self: flex-end;
     justify-content: space-around;
+    width: 70%;
+}
+.btn-primary
+{
+    float: right;
 }
 
 a:link
