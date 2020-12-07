@@ -55,6 +55,7 @@ export class ProductoService {
       'Access-Control-Allow-Origin':'http://localhost:5001',
       'Access-Control-Allow-Methods':'POST, PUT,GET,DELETE',
     };
+    product.productoId = parseInt(product.productoId);
     return this.http.put<any>(this.apiUrl+"/"+product.productoId,product,{headers});
   }
 

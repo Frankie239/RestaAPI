@@ -26,7 +26,8 @@ export class MesasVisualizadorComponent implements OnInit {
   mesa: Imesa;
   pedidoId:number;
   Id:number; 
-  newPedido:Pedido = new Pedido();
+  newPedido: Pedido = new Pedido();
+  hasPedidos: boolean = false;
   
   ngOnInit(): void {
     
@@ -53,6 +54,8 @@ export class MesasVisualizadorComponent implements OnInit {
             if(this.listadoProductos.length > 0)
             {
               this.UpdateMesaState("ocupada");
+              this.hasPedidos = true;
+
             }
             else
             {
@@ -74,7 +77,8 @@ export class MesasVisualizadorComponent implements OnInit {
 
 
     
-    
+    this.newPedido.Hora = Date.now();
+
     
   }
   
@@ -87,7 +91,7 @@ export class MesasVisualizadorComponent implements OnInit {
   RedirecctionToAddingProd(){
     //ToDO: Hacer que cuando apretas el boton de agregar prods si no hay un pedido dentro de la lista de pedidos por mesa se agregue Un pedido
     
-    if(this.mesa.pedidos.length == 0)
+    if(!this.hasPedidos)
     {
       this.mesa.pedidos.push(this.CreateNewPedido());
       
@@ -120,13 +124,9 @@ export class MesasVisualizadorComponent implements OnInit {
 
   CreateNewPedido():IPedido
   {
-    this.newPedido.pedidoId = 0;
-    //this.newPedido.fecha = Date.now();
-    this.newPedido.fecha = "2020-12-06T23:18:06";
-    console.log(this.mesa.mesaId);
-    this.newPedido.mesaId = this.mesa.mesaId;
-
-    this.PedidoService.InsertNewPedido(this.newPedido)
+    this.newPedido.Hora = Date.now();
+    
+    this.PedidoService.InsertPedidoWithId(this.newPedido,this.mesa.mesaId)
     .subscribe
     (
       res =>{
@@ -148,11 +148,8 @@ export class MesasVisualizadorComponent implements OnInit {
 }
 
 class Pedido implements IPedido{
+  mesa: number;
   pedidoId: number;
-  mesaId: number;
-  fecha: any;
-  
-}
-  
-  
+  Hora: any;
 
+}

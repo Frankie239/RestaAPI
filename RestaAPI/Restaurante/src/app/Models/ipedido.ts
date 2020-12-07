@@ -5,7 +5,7 @@ import { Imesa } from "./imesa";
 export interface IPedido {
 
     pedidoId:number;
-    mesaId:number;
-    fecha:any;
+    mesa:number;
+    Hora:any;
 
 }

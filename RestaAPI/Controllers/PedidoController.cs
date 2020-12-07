@@ -172,9 +172,15 @@ namespace RestaAPI.Controllers
             
         }
 
-        
+      
         //Devuelve el total de facturacion de un pedido
         //9. get: api/pedido/facturacion
+
+        /// <summary>
+        /// Returns the total of a table with his request.
+        /// </summary>
+        /// <param name="id">Id of the request(pedido)</param>
+        /// <returns>The total costo of that request</returns>
         [HttpGet("Facturacion/{id}")]
         public double calcFacturacion(int id)
         {

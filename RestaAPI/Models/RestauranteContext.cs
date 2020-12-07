@@ -56,7 +56,7 @@ namespace RestaAPI.Models
             .WithMany(i => i.ProductoIngredientes)
             .HasForeignKey(pi => pi.ingredienteId);
 
-            modelBuilder.Entity<ProductoPedido>().HasKey(pp => new {pp.ProductoId, pp.PedidoId});
+            modelBuilder.Entity<ProductoPedido>().HasKey(pp => new {pp.ProductoPedidoId});
 
 
             modelBuilder.Entity<ProductoPedido>()
