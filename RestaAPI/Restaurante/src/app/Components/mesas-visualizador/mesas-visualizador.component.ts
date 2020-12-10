@@ -77,8 +77,7 @@ export class MesasVisualizadorComponent implements OnInit {
 
 
     
-    this.newPedido.Hora = Date.now();
-
+    
     
   }
   
@@ -124,9 +123,13 @@ export class MesasVisualizadorComponent implements OnInit {
 
   CreateNewPedido():IPedido
   {
-    this.newPedido.Hora = Date.now();
+    this.newPedido.pedidoId = 0;
+    //this.newPedido.fecha = Date.now();
+    this.newPedido.fecha = "2020-12-06T23:18:06";
+    console.log(this.mesa.mesaId);
+    this.newPedido.mesaId = this.mesa.mesaId;
     
-    this.PedidoService.InsertPedidoWithId(this.newPedido,this.mesa.mesaId)
+    this.PedidoService.InsertNewPedido(this.newPedido)
     .subscribe
     (
       res =>{
@@ -148,8 +151,9 @@ export class MesasVisualizadorComponent implements OnInit {
 }
 
 class Pedido implements IPedido{
-  mesa: number;
   pedidoId: number;
-  Hora: any;
-
+  fecha: any;
+  mesaId: number;
 }
+  
+

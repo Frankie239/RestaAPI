@@ -14,11 +14,18 @@ export class PedidoService {
   //Agregar metodo en el servicio para agregar un pedido
   InsertNewPedido(pedido:IPedido):Observable<IPedido>
   {
-    return this.http.post<IPedido>(this.apiUrl,pedido);
+    const headers = {
+      'Content-Type':'application/json',
+      'Access-Control-Allow-Origin':'*',
+      'Access-Control-Allow-Methods':'POST, PUT,GET,DELETE',
+    };
+    console.log(pedido);
+    return this.http.post<IPedido>(this.apiUrl,pedido,{headers});
   }
+
   InsertPedidoWithId(pedido:IPedido,Id:number):Observable<IPedido>
   {
-    pedido.mesa = Id;
+    pedido.mesaId = Id;
 
     //? This does not exists!
     //return this.http.post<IPedido>(this.apiUrl + "/mesa/" + Id, pedido);
@@ -27,4 +34,35 @@ export class PedidoService {
     
     
   }
+
+  //Services: 
+
+  //Request total of request. 
+
+  /**
+   * Gets the total facturation of a request,
+   * @param pedidoId 
+   * @returns the total facturation(number)
+   */
+  GetTotalFacturation(pedidoId: number):number
+  {
+    return 0
+  }
+
+  /**
+   * Deletes a Request calling this endpoint
+   * DELETE: api/pedido/{id}
+   * 
+   * @param pedidoId  int the id of the request to delete.
+   */
+  //Delete request 
+  DeletePedido(pedidoId: number)
+  {
+
+  }
+  
+
+  //Delete all the prods into the intermediate table.
+
+  
 }

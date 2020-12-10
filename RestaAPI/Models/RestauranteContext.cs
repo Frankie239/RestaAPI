@@ -18,6 +18,7 @@ namespace RestaAPI.Models
         public DbSet<Pedido> Pedidos {set;get;}
         public DbSet<ProductoIngrediente> ProductoIngredientes {set;get;}
         public DbSet<ProductoPedido> ProductoPedidos {set;get;}
+        public DbSet<User> Users{set;get;}
         public RestauranteContext()
         {
 
