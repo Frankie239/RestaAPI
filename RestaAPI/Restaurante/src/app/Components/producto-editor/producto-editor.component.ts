@@ -98,7 +98,11 @@ export class ProductoEditorComponent implements OnInit {
       this.service.UpdateProd(newProd)
       .subscribe
       (
-        res => alert("Modificado OK"),
+        res =>
+        {
+          alert("Modificado OK");
+          this.GoBack();
+        },
         error=> alert("error")
         
       );

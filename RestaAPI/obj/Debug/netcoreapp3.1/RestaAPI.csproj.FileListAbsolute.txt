@@ -323,3 +323,4 @@ C:\Users\fran9\Documents\GitHub\RestaAPI\RestaAPI\obj\Debug\netcoreapp3.1\RestaA
 C:\Users\fran9\Documents\GitHub\RestaAPI\RestaAPI\obj\Debug\netcoreapp3.1\RestaAPI.pdb
 C:\Users\fran9\Documents\GitHub\RestaAPI\RestaAPI\obj\Debug\netcoreapp3.1\RestaAPI.genruntimeconfig.cache
 C:\Users\fran9\Documents\GitHub\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\fran9\Documents\GitHub\RestaAPI\RestaAPI\bin\Debug\netcoreapp3.1\package-lock.json

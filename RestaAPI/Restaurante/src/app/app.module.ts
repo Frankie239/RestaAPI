@@ -12,6 +12,7 @@ import { MesaComponent } from './Components/mesa/mesa.component';
 import { MesasVisualizadorComponent } from './Components/mesas-visualizador/mesas-visualizador.component';
 import { componentFactoryName } from '@angular/compiler';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LogInComponent } from './Components/log-in/log-in.component';
 
 
 
@@ -26,6 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ProductoEditorComponent,
     MesaComponent,
     MesasVisualizadorComponent,
+    LogInComponent,
    
   ],
   imports: [
@@ -43,7 +45,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       {path: 'productos/editor', component:ProductoEditorComponent},
       {path: 'mesas',component:MesaComponent},
       {path:'mesas/:id', component:MesasVisualizadorComponent},
-      {path:'productos/agregar/:id/:mesa', component: ProductoComponent},
+      { path: 'productos/agregar/:id/:mesa', component: ProductoComponent },
+      {path:'login',component:LogInComponent},
       
       
 
