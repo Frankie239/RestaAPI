@@ -20,7 +20,13 @@ export class LogInService {
 
 
   constructor(@Inject('BASE_URL') private baseUrl: string, private http: HttpClient) { }
-  
+  /**
+   * logs you in into the page.
+   * @param userName the username, string
+   * @param password the password, no encryption yet
+   * @returns  a token and the user that is logged
+   */
+
   LogIn(userName: string, password: string)
   {
     const ApiUser: IUser =
@@ -33,16 +39,36 @@ export class LogInService {
       token: ""
     };
 
+    
     return this.http.post<any>(this.apiUrl, ApiUser)
       .pipe(
         map(response => {
           console.log(response);
+          localStorage.setItem('UsuarioGuardado', JSON.stringify(response));
           return response;
         })
       );
     
 
 
+  }
+  IsLogged()
+  {
+    var logged = false;
+    var user = JSON.parse(localStorage.getItem('UsuarioGuardado'));
+    if (user)
+    {
+      const token = user["token"];
+      console.log(token);
+      logged = true;
+    }
+    return logged;
+    
+
+  }
+
+  LogOut() {
+    localStorage.removeItem('UsuarioGuardado');
   }
 
   

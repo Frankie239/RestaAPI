@@ -13,6 +13,7 @@ import { MesasVisualizadorComponent } from './Components/mesas-visualizador/mesa
 import { componentFactoryName } from '@angular/compiler';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogInComponent } from './Components/log-in/log-in.component';
+import {  GuardPageService } from "src/app/Services/guard-page.service";
 
 
 
@@ -38,15 +39,15 @@ import { LogInComponent } from './Components/log-in/log-in.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      {path:'clientes-listado', component: ClienteComponent},
-      {path:'pedidos',component: PedidoComponent},
-      {path:'productos',component:ProductoComponent},
-      {path:'productos/editor/:id', component:ProductoEditorComponent},
-      {path: 'productos/editor', component:ProductoEditorComponent},
-      {path: 'mesas',component:MesaComponent},
-      {path:'mesas/:id', component:MesasVisualizadorComponent},
-      { path: 'productos/agregar/:id/:mesa', component: ProductoComponent },
-      {path:'login',component:LogInComponent},
+      {path:'clientes-listado', component: ClienteComponent,canActivate:[GuardPageService]},
+      { path: 'pedidos', component: PedidoComponent, canActivate:[GuardPageService]},
+      {path:'productos',component:ProductoComponent,canActivate:[GuardPageService]},
+      {path:'productos/editor/:id', component:ProductoEditorComponent,canActivate:[GuardPageService]},
+      {path: 'productos/editor', component:ProductoEditorComponent,canActivate:[GuardPageService]},
+      {path: 'mesas',component:MesaComponent, canActivate:[GuardPageService]},
+      {path:'mesas/:id', component:MesasVisualizadorComponent,canActivate:[GuardPageService]},
+      { path: 'productos/agregar/:id/:mesa', component: ProductoComponent,canActivate:[GuardPageService]},
+      {path:'',component:LogInComponent},
       
       
 
