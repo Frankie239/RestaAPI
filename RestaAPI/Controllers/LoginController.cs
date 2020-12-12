@@ -78,7 +78,7 @@ namespace RestaAPI.Controllers
         private string GenerateToken(User UserInfo)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["jwt:SecretKey"]));
-            //!FALTA VER ESTO
+            //! change it to cookies?
             var credentials = new SigningCredentials(securityKey,SecurityAlgorithms.HmacSha256);
             var claims = new []
             {

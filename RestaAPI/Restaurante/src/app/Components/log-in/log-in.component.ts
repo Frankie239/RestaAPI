@@ -13,24 +13,27 @@ export class LogInComponent implements OnInit {
 
   LoginForm: FormGroup;
   returnUrl: string;
-  
+  logInFlag: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
-    private AuthService: LogInService,
+    public AuthService: LogInService,
     private router: Router,
     private ActivatedRoute: ActivatedRoute,
-  ) { }
+  )
+  {
+    this.logInFlag = AuthService.IsLogged();
+  }
 
   
-  logInFlag: boolean;
+  
 
   ngOnInit(): void {
 
     //Every time the log in component loads, logs out the actual user
     if (this.AuthService.IsLogged)
     {
-      this.AuthService.LogOut();
+      //this.AuthService.LogOut();
     }
     this.LoginForm = this.formBuilder.group(
       {
@@ -56,6 +59,13 @@ export class LogInComponent implements OnInit {
       }
     )
   }
+
+  /**
+   * calls the service to log you into the page. if you are not logged in, 
+   * you cant access all the other components that are about management.
+   * 
+   * 
+   */
   
   Loguear()
   {
@@ -65,7 +75,7 @@ export class LogInComponent implements OnInit {
     this.AuthService.LogIn(usuarioFormulario.userName,usuarioFormulario.password)
       .subscribe(
         res => {
-          console.log(res);
+          /*console.log(res);*/
           this.router.navigate(["/mesas"]);
         },
         error => console.error("ERROR!", error)
@@ -76,7 +86,7 @@ export class LogInComponent implements OnInit {
   {
     console.log("Cerrando");
     this.AuthService.LogOut();
-    this.logInFlag = this.AuthService.IsLogged();
+    this.logInFlag = false;
   }
   
 
