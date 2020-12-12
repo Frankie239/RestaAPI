@@ -13,7 +13,8 @@ import { MesasVisualizadorComponent } from './Components/mesas-visualizador/mesa
 import { componentFactoryName } from '@angular/compiler';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogInComponent } from './Components/log-in/log-in.component';
-import {  GuardPageService } from "src/app/Services/guard-page.service";
+import { GuardPageService } from "src/app/Services/guard-page.service";
+import {  InterceptorService } from "../app/Services/interceptor.service";
 
 
 
@@ -54,7 +55,8 @@ import {  GuardPageService } from "src/app/Services/guard-page.service";
     ])
   ],
   providers: [
-    {provide: 'BASE_URL', useFactory: getBaseUrl}
+    { provide: 'BASE_URL', useFactory: getBaseUrl },
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
 
   ],
   bootstrap: [AppComponent]
