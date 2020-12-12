@@ -11,6 +11,8 @@ namespace RestaAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
+    //Todo: Add authorize decorator to control how te request are sent.
     public class PedidoController : ControllerBase
     {
         private readonly RestauranteContext _context;

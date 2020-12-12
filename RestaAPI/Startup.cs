@@ -82,7 +82,11 @@ namespace RestaAPI
 
             app.UseRouting();
 
+
+            //For the token validation to work
+            app.UseAuthentication();
             app.UseAuthorization();
+            
 
             app.UseEndpoints(endpoints =>
             {
