@@ -80,11 +80,11 @@
           <td>$ {{prod.precio|currency:'ARS'}}</td>
         </tr>
       </tbody>
-    </table>
+    </table>  
   </div>
 
   <button id="add" class="btn btn-success" (click)="AddAllSelectedProds()"*ngIf=" this.Id != undefined">Agregar al pedido</button>
-  <button id="cancel" class="btn btn-danger" >Cancelar</button>
+  <button id="cancel" class="btn btn-danger"(click)="GoBack()" >Cancelar</button>
               
 </div>
 

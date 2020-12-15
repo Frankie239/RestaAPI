@@ -11,7 +11,7 @@ import {MesasService} from 'src/app/Services/mesas.service';
 })
 export class MesaComponent implements OnInit {
 
-  public listaMesas:Imesa[];
+  public listaMesas:Imesa[] = [];
 
   constructor(private router:Router, private Servicio: MesasService) { }
 
@@ -45,6 +45,29 @@ export class MesaComponent implements OnInit {
       error => console.log("Error: "+error)
 
     )
+  }
+
+  
+  AddTable()
+  {
+    var lastTable: Imesa = this.listaMesas[this.listaMesas.length - 1];
+    
+    var newTable: Imesa = {
+      mesaId: 0,
+      numeroMesa: lastTable.numeroMesa + 1,
+      estado: "libre",
+      pedidos: null
+    };
+      
+
+
+    this.Servicio.PostNewTable(newTable)
+      .subscribe(
+        res => console.log("Agregado"),
+        error => console.error("ERROR!!")
+      );
+     
+     
   }
 
 

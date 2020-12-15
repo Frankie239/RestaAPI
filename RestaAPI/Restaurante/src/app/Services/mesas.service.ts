@@ -31,4 +31,9 @@ export class MesasService {
     return this.http.put<Imesa>(this.apiUrl+"/"+id,mesa);
   }
 
+  PostNewTable(table:Imesa)
+  {
+    return this.http.post<Imesa>(this.apiUrl, table);
+  }
+
 }

@@ -1,17 +1,24 @@
-<div id="wrapper">
+<div id="grid">
     
+    <div id="wrapper">
+        <a *ngFor="let mesa of listaMesas" (click)="CargarViewMesaPedido(mesa.mesaId)"  class="mesa"
+        [ngClass]="
+        {   'ocupada':mesa.estado == 'ocupada',
+            'libre': mesa.estado == 'libre',
+            'reservada': mesa.estado == 'reservada'
+        }">
+            <h1>{{mesa.numeroDeMesa}}</h1>
+            
+        </a>
     
-    <a *ngFor="let mesa of listaMesas" (click)="CargarViewMesaPedido(mesa.mesaId)"  class="mesa"
-    [ngClass]="
-    {   'ocupada':mesa.estado == 'ocupada',
-        'libre': mesa.estado == 'libre',
-        'reservada': mesa.estado == 'reservada'
-    }">
-        <h1>{{mesa.numeroDeMesa}}</h1>
-        
-    </a>
+    </div>
+
+    <button class="btn btn-primary" (click)="AddTable()">Agregar mesa</button>
     
 </div>
+
+
+
 
     
   

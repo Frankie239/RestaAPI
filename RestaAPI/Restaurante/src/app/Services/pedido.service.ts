@@ -58,7 +58,7 @@ export class PedidoService {
   //Delete request 
   DeletePedido(pedidoId: number)
   {
-
+    return this.http.delete<any>(this.apiUrl + "/" + pedidoId);
   }
   
 

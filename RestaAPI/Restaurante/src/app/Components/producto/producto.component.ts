@@ -4,7 +4,8 @@ import {Iproducto} from 'src/app/Models/iproducto';
 import {Router} from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import {ProductoService} from 'src/app/Services/producto.service';
-import {ProductoPedidoService} from 'src/app/Services/producto-pedido.service';
+import { ProductoPedidoService } from 'src/app/Services/producto-pedido.service';
+import { Location } from '@angular/common';
 
 
 
@@ -15,7 +16,7 @@ import {ProductoPedidoService} from 'src/app/Services/producto-pedido.service';
 })
 export class ProductoComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,@Inject('BASE_URL') private baseUrl:string,private router: Router, private service: ProductoService,private serviceProdPedido:ProductoPedidoService) { }
+  constructor(private _location:Location, private route: ActivatedRoute,@Inject('BASE_URL') private baseUrl:string,private router: Router, private service: ProductoService,private serviceProdPedido:ProductoPedidoService) { }
 
  
 
@@ -161,6 +162,13 @@ export class ProductoComponent implements OnInit {
       
     });
   }
+
+  GoBack()
+  {
+    this._location.back();
+  }
+
+
 
     
    

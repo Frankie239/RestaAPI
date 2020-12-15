@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs';
 import { PedidoService } from 'src/app/Services/pedido.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+//import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 
@@ -28,12 +28,14 @@ export class MesasVisualizadorComponent implements OnInit {
   Id:number; 
   newPedido: Pedido = new Pedido();
   hasPedidos: boolean = false;
+  TotalPrice: number = 0;
   
   ngOnInit(): void {
     
-    this.listadoProductos =
+    //this.listadoProductos = 
     this.Id = this.route.snapshot.params.id;
     //Busca la mesa que le llega por la url
+    
     this.ServicioMesa.MostrarUnaMesa(this.Id)
     .subscribe
     
@@ -143,6 +145,34 @@ export class MesasVisualizadorComponent implements OnInit {
     return this.newPedido;
 
 
+  }
+
+
+  CalculateTotal()
+  {
+    this.listadoProductos.forEach(prod => {
+      this.TotalPrice += prod.precio;
+      
+    });
+    console.log(this.TotalPrice);
+
+    
+  }
+
+  CloseTable()
+  {
+   
+    this.CalculateTotal();
+    alert("El total de la mesa es: " + this.TotalPrice);
+    this.PedidoService.DeletePedido(this.pedidoId).subscribe(
+      res => {
+        console.log(res);
+        
+      },
+      error => console.error("ERROR!")
+    );
+    this.UpdateMesaState("libre");
+    
   }
 
   

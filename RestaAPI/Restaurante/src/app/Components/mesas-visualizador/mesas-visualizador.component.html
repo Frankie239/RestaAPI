@@ -22,7 +22,7 @@
     </table>
       
     
-    <button id="cerrar" class="btn btn-success">Cerrar mesa</button>
+    <button id="cerrar" class="btn btn-success" (click)="CloseTable()">Cerrar mesa</button>
     <button class="btn btn-danger">Eliminar</button>
     <button id="agregar" (click)="RedirecctionToAddingProd()" class="btn btn-success">Agregar producto</button>
     <button class="btn btn-warning"(click)="UpdateMesaState('reservada')" id="reserva" *ngIf="listadoProductos.length <= 0">Reservar</button>
