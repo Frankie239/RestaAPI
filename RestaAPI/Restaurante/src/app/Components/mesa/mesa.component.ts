@@ -11,18 +11,24 @@ import {MesasService} from 'src/app/Services/mesas.service';
 })
 export class MesaComponent implements OnInit {
 
-  public listaMesas:Imesa[] = [];
+  public listaMesas: Imesa[] = [];
+  public lastTableNumber: string = "";
 
   constructor(private router:Router, private Servicio: MesasService) { }
 
   ngOnInit(): void {
+
+    this.Servicio.refreshNeeded$
+      .subscribe(
+        () => { this.CargarMesas(); }
+      );
     this.CargarMesas();
     //console.log(this.listaMesas[3].pedidos[0]);
+  }
 
      
     
 
-  }
 
 
 
@@ -38,8 +44,12 @@ export class MesaComponent implements OnInit {
       res => 
       { 
         this.listaMesas = res;
+        //Capture the last number of a table.
+        this.lastTableNumber = this.listaMesas[(this.listaMesas.length - 1)].numeroMesa;
+        //Show all in console.
         console.table(this.listaMesas);
-        console.log(this.listaMesas[3].pedidos[0].pedidoId);
+
+        ////console.log(this.listaMesas[3].pedidos[0].pedidoId);
       },
       
       error => console.log("Error: "+error)
@@ -51,10 +61,10 @@ export class MesaComponent implements OnInit {
   AddTable()
   {
     var lastTable: Imesa = this.listaMesas[this.listaMesas.length - 1];
-    
+
     var newTable: Imesa = {
       mesaId: 0,
-      numeroMesa: lastTable.numeroMesa + 1,
+      numeroMesa: this.lastTableNumber,
       estado: "libre",
       pedidos: null
     };

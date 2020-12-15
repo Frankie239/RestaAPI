@@ -2,7 +2,8 @@ import { Injectable, Inject} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 //import {inject} from '@angular/core/testing';
 import {Imesa} from '../Models/imesa';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,12 @@ export class MesasService {
 
 
   constructor(@Inject('BASE_URL') private baseUrl:string ,private http:HttpClient) { }
+
+  private _refreshNeeded$ = new Subject<void>();
+
+  get refreshNeeded$() {
+    return this._refreshNeeded$;
+  }
 
   mostrarMesas(): Observable<Imesa[]>
   {
@@ -33,7 +40,10 @@ export class MesasService {
 
   PostNewTable(table:Imesa)
   {
-    return this.http.post<Imesa>(this.apiUrl, table);
+    return this.http.post<Imesa>(this.apiUrl, table)
+      .pipe(
+        tap(() => { this._refreshNeeded$.next(); })
+      );
   }
 
 }
