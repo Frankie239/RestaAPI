@@ -46,7 +46,8 @@ export class MesaComponent implements OnInit {
       res => 
       { 
         this.listaMesas = res;
-        //Capture the last number of a table.
+        //Capture the last number of a table and add one to the number(To later add a new one).
+        // this is being used on the AddTable()
         this.lastTableNumber = parseInt(this.listaMesas[(this.listaMesas.length - 1)].numeroDeMesa) + 1 ;
         
         //Show all in console.
@@ -61,11 +62,14 @@ export class MesaComponent implements OnInit {
     )
   }
 
-  
+  /**
+   * Adds a new table with the last number +1.
+   */
   AddTable()
   {
     var lastTable: Imesa = this.listaMesas[this.listaMesas.length - 1];
 
+    //Assign the captured number on the onInit part of the component.
     var newTable: Imesa = {
       mesaId: 0,
       numeroDeMesa:  this.lastTableNumber.toString(),
