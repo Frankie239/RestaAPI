@@ -40,6 +40,7 @@ export class LogInComponent implements OnInit {
       {
         userName: "",
         password: ""
+        
       }
     );
 

@@ -2,7 +2,7 @@ import {IPedido} from 'src/app/Models/ipedido';
 
 export interface Imesa {
     mesaId:number,
-    numeroMesa:string,
+    numeroDeMesa:string,
     estado:string,
     pedidos:IPedido[],
 }

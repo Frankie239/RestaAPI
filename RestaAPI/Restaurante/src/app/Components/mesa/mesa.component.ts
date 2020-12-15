@@ -1,3 +1,4 @@
+import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { Imesa } from 'src/app/Models/imesa';
@@ -12,7 +13,8 @@ import {MesasService} from 'src/app/Services/mesas.service';
 export class MesaComponent implements OnInit {
 
   public listaMesas: Imesa[] = [];
-  public lastTableNumber: string = "";
+  public lastTableNumber: number = 0;
+  
 
   constructor(private router:Router, private Servicio: MesasService) { }
 
@@ -23,7 +25,7 @@ export class MesaComponent implements OnInit {
         () => { this.CargarMesas(); }
       );
     this.CargarMesas();
-    //console.log(this.listaMesas[3].pedidos[0]);
+    ////console.log(this.listaMesas[3].pedidos[0]);
   }
 
      
@@ -45,9 +47,11 @@ export class MesaComponent implements OnInit {
       { 
         this.listaMesas = res;
         //Capture the last number of a table.
-        this.lastTableNumber = this.listaMesas[(this.listaMesas.length - 1)].numeroMesa;
+        this.lastTableNumber = parseInt(this.listaMesas[(this.listaMesas.length - 1)].numeroDeMesa) + 1 ;
+        
         //Show all in console.
         console.table(this.listaMesas);
+        console.table(this.lastTableNumber);
 
         ////console.log(this.listaMesas[3].pedidos[0].pedidoId);
       },
@@ -64,7 +68,7 @@ export class MesaComponent implements OnInit {
 
     var newTable: Imesa = {
       mesaId: 0,
-      numeroMesa: this.lastTableNumber,
+      numeroDeMesa:  this.lastTableNumber.toString(),
       estado: "libre",
       pedidos: null
     };
