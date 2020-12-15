@@ -6,13 +6,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RestaAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RestaAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     
-    //Todo: Add authorize decorator to control how te request are sent.
     public class PedidoController : ControllerBase
     {
         private readonly RestauranteContext _context;

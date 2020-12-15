@@ -8,6 +8,7 @@ import { ProductoService } from 'src/app/Services/producto.service';
 import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs';
+import { Location } from '@angular/common';
 import { PedidoService } from 'src/app/Services/pedido.service';
 //import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
@@ -20,7 +21,14 @@ import { PedidoService } from 'src/app/Services/pedido.service';
 })
 export class MesasVisualizadorComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private router: Router, private ServicioMesa: MesasService, private ServicioProducto: ProductoService,private PedidoService:PedidoService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private ServicioMesa: MesasService,
+    private ServicioProducto: ProductoService,
+    private PedidoService: PedidoService,
+    private _location: Location,
+  ) { }
   //Lista de prod para mostrarlos en la tabla
   public listadoProductos: Iproducto[] = [];
   mesa: Imesa;
@@ -44,6 +52,7 @@ export class MesasVisualizadorComponent implements OnInit {
         
         this.mesa = res;
         this.pedidoId = this.mesa.pedidos[0].pedidoId;
+        
         
         this.ServicioProducto.productosPedidosPorId(this.pedidoId)
         .subscribe
@@ -90,7 +99,7 @@ export class MesasVisualizadorComponent implements OnInit {
    */
 
   RedirecctionToAddingProd(){
-    //ToDO: Hacer que cuando apretas el boton de agregar prods si no hay un pedido dentro de la lista de pedidos por mesa se agregue Un pedido
+    
     
     if(!this.hasPedidos)
     {
@@ -117,9 +126,12 @@ export class MesasVisualizadorComponent implements OnInit {
     this.mesa.estado = state;
     this.ServicioMesa.UpdateMesa(this.Id,this.mesa)
     .subscribe(
-      res => console.log(res),
+      res => {
+        console.log(res);
+      },
       error => console.error(error)
     );
+    //this._location.back();
 
   }
 
@@ -172,6 +184,14 @@ export class MesasVisualizadorComponent implements OnInit {
       error => console.error("ERROR!")
     );
     this.UpdateMesaState("libre");
+
+    this._location.back();
+    
+  }
+
+
+  DeleteTable(id: number)
+  {
     
   }
 

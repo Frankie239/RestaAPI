@@ -33,7 +33,8 @@ export class LogInComponent implements OnInit {
     //Every time the log in component loads, logs out the actual user
     if (this.AuthService.IsLogged)
     {
-      //this.AuthService.LogOut();
+      this.AuthService.LogOut();
+      this.logInFlag = false;
     }
     this.LoginForm = this.formBuilder.group(
       {
@@ -44,7 +45,7 @@ export class LogInComponent implements OnInit {
 
     this.returnUrl = this.ActivatedRoute.snapshot.queryParams["returnUrl"] || '/';
 
-    //this.logInFlag = this.AuthService.IsLogged();
+    
 
   }
 
