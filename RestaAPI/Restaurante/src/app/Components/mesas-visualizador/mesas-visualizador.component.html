@@ -1,4 +1,4 @@
-<h1>Mesa {{mesa.mesaId}}</h1>
+<h1>Mesa {{mesa.numeroDeMesa}}</h1>
 <div id="wrapper" >
     
     
@@ -23,7 +23,7 @@
       
     
     <button id="cerrar" class="btn btn-success" (click)="CloseTable()">Cerrar mesa</button>
-    <button class="btn btn-danger">Eliminar</button>
+    <button class="btn btn-danger" (click)="DeleteTable(mesa.mesaId)">Eliminar</button>
     <button id="agregar" (click)="RedirecctionToAddingProd()" class="btn btn-success">Agregar producto</button>
     <button class="btn btn-warning"(click)="UpdateMesaState('reservada')" id="reserva" *ngIf="listadoProductos.length <= 0">Reservar</button>
     

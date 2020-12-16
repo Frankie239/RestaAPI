@@ -46,4 +46,9 @@ export class MesasService {
       );
   }
 
+  DeleteTable(id: number)
+  {
+    return this.http.delete<Imesa>(this.apiUrl+"/"+id);
+  }
+
 }

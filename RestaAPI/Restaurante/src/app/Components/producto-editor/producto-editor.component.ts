@@ -139,7 +139,8 @@ export class ProductoEditorComponent implements OnInit {
     (
       res => {
         console.log(res);
-        this.GoBack();
+        this.router.navigateByUrl("/productos");
+        
         
       },
       error => console.error("Error al borrar"),

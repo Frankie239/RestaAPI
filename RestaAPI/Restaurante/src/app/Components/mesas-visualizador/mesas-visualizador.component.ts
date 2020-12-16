@@ -185,14 +185,21 @@ export class MesasVisualizadorComponent implements OnInit {
     );
     this.UpdateMesaState("libre");
 
-    this._location.back();
+    this.router.navigateByUrl("/mesas");
     
   }
 
 
   DeleteTable(id: number)
   {
-    
+    this.ServicioMesa.DeleteTable(id)
+    .subscribe(
+      res => {
+        alert("Eliminado OK");
+        this.router.navigateByUrl("/mesas");
+      },
+      Error => alert("Error")
+    );
   }
 
   
